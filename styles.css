@@ -204,11 +204,15 @@ body {
   transform: none;
 }
 .entry,
-.pillars li {
+.case,
+.pillars li,
+.steps li {
   transition: transform 0.35s ease, background 0.35s ease;
 }
 .pillars li:hover,
-.entry:hover {
+.entry:hover,
+.case:hover,
+.steps li:hover {
   transform: translateY(-2px);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -235,10 +239,15 @@ body {
 }
 .steps li:first-child { border-top: none; padding-top: 0; }
 .step-i {
+  grid-row: 1 / span 2;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   color: var(--muted);
   padding-top: 0.35rem;
+}
+.steps h3,
+.steps p {
+  grid-column: 2;
 }
 .steps h3 {
   margin: 0 0 0.35rem;
