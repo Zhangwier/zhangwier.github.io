@@ -336,6 +336,7 @@ body {
   }
   .steps li:first-child {
     padding-left: 0;
+    padding-top: 1.35rem;
   }
   .steps li:last-child {
     border-right: none;
