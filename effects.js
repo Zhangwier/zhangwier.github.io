@@ -3,7 +3,7 @@
   const fine = window.matchMedia("(pointer: fine)").matches;
 
   // Scroll reveal
-  const revealables = document.querySelectorAll(".masthead, .toc, .block, .colophon, .entry, .pillars li");
+  const revealables = document.querySelectorAll(".masthead, .toc, .block, .colophon, .entry, .case, .pillars li, .steps li");
   revealables.forEach((el) => el.classList.add("reveal"));
   if (!reduce && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
@@ -47,7 +47,7 @@
       { passive: true }
     );
 
-    const hoverables = "a, button, .entry, .pillars li, h1, h2, h3";
+    const hoverables = "a, button, .entry, .case, .pillars li, .steps li, h1, h2, h3, .cta";
     document.addEventListener("pointerover", (e) => {
       if (e.target.closest(hoverables)) {
         hovering = true;

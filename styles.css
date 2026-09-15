@@ -215,3 +215,87 @@ body {
   .reveal { opacity: 1; transform: none; transition: none; }
   .fx-canvas { display: none; }
 }
+
+
+/* Method steps */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  counter-reset: none;
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  column-gap: 1rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+}
+.steps li:first-child { border-top: none; padding-top: 0; }
+.step-i {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  padding-top: 0.35rem;
+}
+.steps h3 {
+  margin: 0 0 0.35rem;
+  font-family: "Instrument Serif", serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+.steps p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* Case cards */
+.case {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--rule);
+}
+.case:first-of-type { border-top: none; padding-top: 0; }
+.case-role {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.case h3 {
+  margin: 0 0 0.45rem;
+  font-family: "Instrument Serif", serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+}
+.case > p:last-child { margin: 0; color: var(--muted); }
+
+.contact .cta-row { margin: 1.5rem 0 0; }
+.cta {
+  display: inline-block;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.cta:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+.colophon a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 720px) {
+  .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+  }
+  .steps li {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+  }
+}
