@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Keep focus rings visible without looking heavy-handed. */
+:focus-visible {
+  outline: 2px solid theme('colors.teal.300');
+  outline-offset: 3px;
+  border-radius: 2px;
+}
