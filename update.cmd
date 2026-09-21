@@ -27,7 +27,7 @@ git commit -m "%MSG%"
 if errorlevel 1 goto :fail
 
 :push
-git push
+git push origin main
 if errorlevel 1 goto :fail
 
 echo.
