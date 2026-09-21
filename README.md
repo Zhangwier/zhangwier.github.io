@@ -46,7 +46,11 @@ npx serve out
 
 仓库里已放好 `.github/workflows/deploy.yml`，推送到 `main` 就会自动构建并发布。
 
-**只需在 GitHub 上手动设置一次:** 仓库 **Settings → Pages → Build and deployment → Source**，选择 **GitHub Actions**。
+**Settings → Pages → Build and deployment → Source** 已设为 **GitHub Actions**（对应 API 里的 `build_type: workflow`）。
+
+> 别把它改回「Deploy from a branch」。改回去之后，Pages 会用 Jekyll 去渲染 `README.md`，
+> 构建出一个主题页面盖在站点上——现象是打开网址看到的是这份 README 的网页版，而不是个人主页。
+> 改回「GitHub Actions」并重新推送一次即可恢复。
 
 工作流会自动判断仓库类型:
 
