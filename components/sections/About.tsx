@@ -1,6 +1,20 @@
 import { profile } from '@/data/profile';
 import SectionHeading, { sectionClass } from '@/components/SectionKit';
 
+/** 把 **文字** 渲染成更亮的强调色，其余部分保持正文灰度。 */
+function renderEmphasis(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={index} className="font-medium text-slate-200">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
 export default function About() {
   return (
     <section id="about" className={sectionClass} aria-label="关于我">
@@ -8,7 +22,7 @@ export default function About() {
 
       <div className="space-y-4">
         {profile.about.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
+          <p key={index}>{renderEmphasis(paragraph)}</p>
         ))}
       </div>
 
