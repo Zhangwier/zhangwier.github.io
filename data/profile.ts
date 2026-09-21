@@ -1,12 +1,24 @@
 /**
  * 站点全部文案与链接都在这个文件里改，不需要碰组件。
- * 标注「待填」的地方是占位，替换成真实信息即可；留空字符串则对应元素自动隐藏。
+ * 标注「待填」的地方是占位；数组留空则对应区块与导航项自动隐藏。
  */
 
 export type SocialLink = {
   label: string;
   href: string;
   icon: 'github' | 'linkedin' | 'x' | 'mail';
+};
+
+export type FocusItem = {
+  title: string;
+  subtitle: string;
+  description: string;
+};
+
+export type MethodItem = {
+  step: string;
+  title: string;
+  description: string;
 };
 
 export type ExperienceItem = {
@@ -37,26 +49,81 @@ export type WritingItem = {
 };
 
 export const profile = {
-  name: 'zhangwei',
+  name: 'ZhangWex',
   title: '造价工程师',
-  tagline: '公路与桥梁工程造价。做过施工现场，也做过造价咨询，习惯用可核对的依据把工程的价值讲清楚。',
+  tagline: '成本咨询、合约管控，以及面向工程现场的智能化造价方法。',
   email: 'zhangwex@outlook.com',
 
   about: [
-    '我是 zhangwei，公路与桥梁工程造价工程师。目前在造价咨询单位工作，主要围绕高速公路与特大桥项目开展造价文件的编制、修编与复核。',
-    '此前我在施工单位，参与过中山东环高速公路、狮子洋大桥 UHPC 桥面板预制等项目。那几段现场经历让我熟悉施工工艺与计量口径——知道一道工序在现场是怎么发生的、成本是由哪些环节堆出来的，回头做造价时，判断一个数字合不合理就有了着力点。',
-    '现在的工作更多落在清单计价与投资控制上：结合标段划分把概算分解到单位工程，复核工程量清单，校验材料价格与组价逻辑，梳理变更对造价的影响。我把它看成同一件事——用经得起追问的依据，把工程该有的价值说清楚。',
+    '工程造价工程师，从事工程建设领域的造价咨询与成本管理工作，覆盖投资估算、概预算、工程量清单及招标控制价、过程计量与变更签证、竣工结算审核等环节。',
+    '此前我在施工单位工作，参与过中山东环高速公路、狮子洋大桥 UHPC 桥面板预制等项目。现场那几年让我熟悉施工工艺与计量口径——知道一道工序在现场怎么发生、成本从哪些环节堆出来，回头判断一个数字合不合理，心里就有底。',
+    '工作之余，我持续把智能化造价系统与自动化工具引入日常专业流程：让重复对量、表格搬运这类机械环节交给工具，把关键的判断留给人。',
   ],
 
-  // 留一两条你最愿意被问到的方向即可，不必求全。
-  skills: ['公路工程概预算', '桥梁工程量计算', '工程量清单计价', '变更与索赔', '造价文件复核', '钢结构与 UHPC 造价'],
+  // 「方向」区块：四条并列的专业定位。
+  focus: [
+    {
+      title: '全过程造价咨询',
+      subtitle: 'Cost Consulting',
+      description: '投资估算、招标控制价、过程计量与竣工结算审核的全链条参与。',
+    },
+    {
+      title: '合约与变更管控',
+      subtitle: 'Commercial Control',
+      description: '合约与变更的经济性判断，进度款与签证口径的统一。',
+    },
+    {
+      title: '工程语境判断',
+      subtitle: 'Infrastructure Context',
+      description: '在真实工程语境中读图、读量、读价，而不是只看表格。',
+    },
+    {
+      title: '智能化造价',
+      subtitle: 'Intelligent Costing',
+      description: '规则沉淀、辅助算量与效率工具链的建设。',
+    },
+  ] satisfies FocusItem[],
+
+  // 「方式」区块：把造价工作收成一条可解释、可复核的主线。
+  method: [
+    {
+      step: '01',
+      title: '界定',
+      description: '明确投资边界、阶段目标与可比口径，形成后续工作的参照系。',
+    },
+    {
+      step: '02',
+      title: '结构化',
+      description: '把设计意图转写成清单与控制价语言，保证计量规则可执行。',
+    },
+    {
+      step: '03',
+      title: '动态校准',
+      description: '以计量、变更与合约执行为反馈环，持续校正成本轨迹。',
+    },
+    {
+      step: '04',
+      title: '闭环沉淀',
+      description: '结算审核与依据归档并行，输出可交接、可追溯的结论。',
+    },
+  ] satisfies MethodItem[],
+
+  skills: [
+    '投资估算',
+    '概预算编制',
+    '工程量清单计价',
+    '招标控制价',
+    '变更与签证',
+    '结算审核',
+    '智能化造价',
+  ],
 
   social: [
-    { label: 'GitHub', href: 'https://github.com/zhangwier', icon: 'github' },
+    { label: 'GitHub', href: 'https://github.com/Zhangwier', icon: 'github' },
     { label: '邮箱', href: 'mailto:zhangwex@outlook.com', icon: 'mail' },
   ] satisfies SocialLink[],
 
-  // 有简历 PDF 就放到 public/resume.pdf，然后改成 '/resume.pdf'；留空则不显示这个入口。
+  // 有简历 PDF 就放到 public/resume.pdf，然后改成 '/resume.pdf'；留空则不显示入口。
   resumeHref: '',
 };
 
@@ -109,9 +176,11 @@ export const projects: ProjectItem[] = [
 // 没有文章就留空数组，首页会自动隐藏「文章」区块与对应导航。
 export const writing: WritingItem[] = [];
 
-// 导航项与上面的区块一一对应，隐藏区块时记得同步删掉这里的条目。
+// 导航项与页面区块一一对应；隐藏区块时记得同步删掉这里的条目。
 export const navLinks = [
   { id: 'about', label: '关于' },
+  { id: 'focus', label: '方向' },
+  { id: 'method', label: '方式' },
   { id: 'experience', label: '经历' },
   { id: 'projects', label: '项目' },
 ];

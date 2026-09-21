@@ -1,6 +1,8 @@
 import Spotlight from '@/components/Spotlight';
 import Sidebar from '@/components/Sidebar';
 import About from '@/components/sections/About';
+import Focus from '@/components/sections/Focus';
+import Method from '@/components/sections/Method';
 import Experience from '@/components/sections/Experience';
 import Projects from '@/components/sections/Projects';
 import Writing from '@/components/sections/Writing';
@@ -25,6 +27,8 @@ export default function Page() {
 
           <main id="content" className="pt-24 lg:w-[52%] lg:py-24">
             <About />
+            <Focus />
+            <Method />
             <Experience />
             <Projects />
             <Writing />
