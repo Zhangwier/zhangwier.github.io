@@ -40,17 +40,6 @@ export type ProjectItem = {
   badge?: string;
 };
 
-export type WritingItem = {
-  year: string;
-  title: string;
-  subtitle?: string;
-  href?: string;
-  summary?: string[];
-  tags?: string[];
-  image?: string;
-  imageAlt?: string;
-};
-
 export const profile = {
   name: 'ZhangWex',
   title: '全过程工程造价工程师 · 投资控制顾问',
@@ -198,19 +187,8 @@ export const projects: ProjectItem[] = [
   },
 ];
 
-// 「分享」区块：技术文章或经验总结。留空数组则区块与导航项自动隐藏。
-export const writing: WritingItem[] = [
-  {
-    year: '2026',
-    title: '造价知识中枢（CostRAG）',
-    tags: ['RAG', '知识库', '造价智能化'],
-    summary: [
-      '工程造价任务的核心特征是确定性检索与精确执行，而非开放性推理，通用大模型在此类任务中普遍存在检索误差、计算失准、格式失控等问题。为此，提出一种框架无关的造价领域知识库构建方法，遵循「不训练模型、不构建底座，仅构建挂载点与约束」的设计原则。',
-      '系统采用四层架构：知识真源层（规范、方法与案例，附带来源锚点）、精确值层（定额与清单等结构化数据，支持脚本化查表）、任务书层（定义任务步骤与执行约束）、输出契约层（模板与 Schema 分离数据与格式，通过脚本完成填充）。核心设计包括：结构化数据独立于检索增强生成流程、公式统一由脚本生成以避免模型篡改、采用数据驱动布局替代传统表格控件、知识按需拆分并结构化入库。',
-      '本方法将专业知识结构化、执行流程文件化、输出格式契约化，不依赖模型能力迭代，而是通过约束固化专业经验，使重复性造价工作具备可复现性与可靠性。',
-    ],
-  },
-];
+// 「分享」区块的内容不再写在这里：文章是 content/posts/ 下的 Markdown 文件，
+// 由 lib/posts.ts 在构建期读取，首页自动显示最新几篇。
 
 // 导航项与页面区块一一对应；隐藏区块时记得同步删掉这里的条目。
 export const navLinks = [
