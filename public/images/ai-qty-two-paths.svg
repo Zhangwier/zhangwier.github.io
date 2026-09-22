@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 486" width="100%" role="img" aria-label="一次把图纸和底稿丢给 AI，与按六道门核量">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 486" width="100%" role="img" aria-label="一次把图纸和底稿交给 AI，与按阶段约束推进核量">
   <style>
     .t { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; }
     .card { fill: #1e293b; stroke: #334155; }
@@ -11,8 +11,8 @@
     .line { stroke: #475569; stroke-width: 1.5; fill: none; }
   </style>
 
-  <text class="t head" x="20" y="18">第一条 · 一次给完，让 AI 自己决定做到哪算完成</text>
-  <text class="t head" x="392" y="18">第二条 · 按六道门走，站与站之间设门</text>
+  <text class="t head" x="20" y="18">第一条 · 一次给完，由 AI 自行决定做到哪一步算完成</text>
+  <text class="t head" x="392" y="18">第二条 · 按阶段推进，阶段之间设准入条件</text>
 
   <rect class="card" x="20" y="30" width="348" height="56" rx="8"/>
   <text class="t name" x="40" y="56">整本 PDF + 整本底稿</text>
@@ -20,43 +20,43 @@
 
   <path class="line" d="M194,86 V104"/>
   <rect class="card" x="20" y="106" width="348" height="56" rx="8"/>
-  <text class="t name" x="40" y="132">自己决定读到什么程度算完成</text>
-  <text class="t small" x="40" y="150">优先处理整齐的汇总表</text>
+  <text class="t name" x="40" y="132">自行决定读到什么程度算完成</text>
+  <text class="t small" x="40" y="150">优先处理格式齐整的汇总表</text>
 
   <path class="line" d="M194,162 V180"/>
   <rect class="card" x="20" y="182" width="348" height="56" rx="8"/>
   <text class="t name" x="40" y="208">计算过程留在对话里</text>
-  <text class="t small" x="40" y="226">只把结果填进格子，宣布已完成</text>
+  <text class="t small" x="40" y="226">只把结果填进表格，随后宣布完成</text>
 
   <rect class="card" x="20" y="262" width="348" height="204" rx="8" stroke="#3f2f1a"/>
-  <text class="t head" x="40" y="290">于是这三种错一起出现</text>
+  <text class="t head" x="40" y="290">于是这三类偏差同时出现</text>
   <text class="t warn" x="40" y="320">· 认错仍给确定数</text>
   <text class="t small" x="40" y="342">模糊或被图线挡住的尺寸，写成确定值</text>
   <text class="t warn" x="40" y="378">· 死值或假公式</text>
-  <text class="t small" x="40" y="400">改一个原始尺寸，结果不会变</text>
+  <text class="t small" x="40" y="400">改动一个原始尺寸，结果不会联动</text>
   <text class="t warn" x="40" y="436">· 只读汇总表</text>
   <text class="t small" x="40" y="458">加密区、锚固、变截面没有进入计算</text>
 
   <rect class="hi" x="392" y="30" width="348" height="56" rx="8"/>
-  <text class="t name" x="412" y="56">先清点，再定范围</text>
-  <text class="t small" x="412" y="74">写明这次核什么、不核什么</text>
+  <text class="t name" x="412" y="56">先清点，再定界</text>
+  <text class="t small" x="412" y="74">写明本次核什么、不核什么</text>
 
   <path class="line" d="M566,86 V104" stroke="#2dd4bf"/>
   <rect class="hi" x="392" y="106" width="348" height="56" rx="8"/>
   <text class="t name" x="412" y="132">按构件切开</text>
-  <text class="t small" x="412" y="150">每一次指定要看的大样</text>
+  <text class="t small" x="412" y="150">每一次指定需要查阅的大样</text>
 
   <path class="line" d="M566,162 V180" stroke="#2dd4bf"/>
   <rect class="hi" x="392" y="182" width="348" height="56" rx="8"/>
   <text class="t name" x="412" y="208">数量必须是公式</text>
-  <text class="t small" x="412" y="226">原始尺寸单独成列，并写明图号</text>
+  <text class="t small" x="412" y="226">原始尺寸单独成列，并注明图号</text>
 
   <rect class="card" x="392" y="262" width="348" height="204" rx="8"/>
-  <text class="t head" x="412" y="290">于是每一行都站得住</text>
-  <text class="t teal" x="412" y="320">· 对不上的行不放过门</text>
-  <text class="t small" x="412" y="342">截图上对不上参数，这一项不算完成</text>
-  <text class="t teal" x="412" y="378">· 存疑项不进采用值</text>
-  <text class="t small" x="412" y="400">读不准的标成待核实，留在问题清单里</text>
-  <text class="t teal" x="412" y="436">· 改一个数字就知道真假</text>
-  <text class="t small" x="412" y="458">换新对话重算、回图，看结果会不会联动</text>
+  <text class="t head" x="412" y="290">于是每一行都能追溯</text>
+  <text class="t teal" x="412" y="320">· 对不上的行不算完成</text>
+  <text class="t small" x="412" y="342">截图上对不上参数，该分项不通过</text>
+  <text class="t teal" x="412" y="378">· 存疑项不进入采用值</text>
+  <text class="t small" x="412" y="400">读不准的标为待核实，留在问题清单中</text>
+  <text class="t teal" x="412" y="436">· 改动一个数字即可验真</text>
+  <text class="t small" x="412" y="458">另开新对话重算、回图，观察结果是否联动</text>
 </svg>
