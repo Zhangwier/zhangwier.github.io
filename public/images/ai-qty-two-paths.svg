@@ -32,7 +32,7 @@
   <text class="t head" x="40" y="290">于是这三种错一起出现</text>
   <text class="t warn" x="40" y="320">· 认错仍给确定数</text>
   <text class="t small" x="40" y="342">模糊或被图线挡住的尺寸，写成确定值</text>
-  <text class="t warn" x="40" y="378">· 死数或假公式</text>
+  <text class="t warn" x="40" y="378">· 死值或假公式</text>
   <text class="t small" x="40" y="400">改一个原始尺寸，结果不会变</text>
   <text class="t warn" x="40" y="436">· 只读汇总表</text>
   <text class="t small" x="40" y="458">加密区、锚固、变截面没有进入计算</text>
