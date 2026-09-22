@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 
 export default function Page() {
   return (
-    // relative wrapper so the spotlight can switch from fixed (mobile) to absolute (desktop)
+    // group/spotlight 留给以后与光斑联动的悬停效果；光斑层本身是 fixed 定位。
     <div className="group/spotlight relative">
       <Spotlight />
 
