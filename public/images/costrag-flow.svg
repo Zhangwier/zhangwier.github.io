@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 566" width="100%" role="img" aria-label="双路召回与重排的检索流程">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <style>
+    .t { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; }
+    .card { fill: #1e293b; stroke: #334155; }
+    .hi { fill: #134e4a; stroke: #2dd4bf; }
+    .name { fill: #e2e8f0; font-size: 14px; font-weight: 500; }
+    .small { fill: #94a3b8; font-size: 11.5px; }
+    .teal { fill: #5eead4; font-size: 11.5px; }
+    .line { stroke: #475569; stroke-width: 1.5; fill: none; }
+    .box { fill: none; stroke: #334155; stroke-dasharray: 5 4; }
+    .note { fill: #64748b; font-size: 11px; letter-spacing: .06em; }
+  </style>
+
+  <!-- 通道标注 -->
+  <text class="t note" x="20" y="14">检索路径 · 模型参与</text>
+  <text class="t note" x="470" y="14">精确值路径 · 脚本执行，不经模型</text>
+
+  <!-- 提问 -->
+  <rect class="card" x="90" y="26" width="310" height="42" rx="8"/>
+  <text class="t name" x="245" y="52" text-anchor="middle">用户提问</text>
+
+  <!-- 分叉到两路 -->
+  <path class="line" d="M245,68 V88"/>
+  <path class="line" d="M167,88 H323"/>
+  <path class="line" d="M167,88 V108" marker-end="url(#ar)"/>
+  <path class="line" d="M323,88 V108" marker-end="url(#ar)"/>
+
+  <!-- 双路召回 -->
+  <rect class="card" x="90" y="110" width="154" height="46" rx="8"/>
+  <text class="t name" x="167" y="139" text-anchor="middle">关键词检索</text>
+
+  <rect class="card" x="246" y="110" width="154" height="46" rx="8"/>
+  <text class="t name" x="323" y="139" text-anchor="middle">语义检索</text>
+
+  <!-- 汇合 -->
+  <path class="line" d="M167,156 V178"/>
+  <path class="line" d="M323,156 V178"/>
+  <path class="line" d="M167,178 H323"/>
+  <path class="line" d="M245,178 V196" marker-end="url(#ar)"/>
+
+  <!-- 重排 -->
+  <rect class="card" x="90" y="198" width="310" height="46" rx="8"/>
+  <text class="t name" x="245" y="220" text-anchor="middle">重排模型精细打分</text>
+  <text class="t small" x="245" y="236" text-anchor="middle">对两路候选统一排序</text>
+
+  <path class="line" d="M245,244 V270" marker-end="url(#ar)"/>
+
+  <!-- Top N -->
+  <rect class="card" x="90" y="272" width="310" height="42" rx="8"/>
+  <text class="t name" x="245" y="298" text-anchor="middle">选出最精准的 3 – 5 条证据</text>
+
+  <path class="line" d="M245,314 V340" marker-end="url(#ar)"/>
+
+  <!-- 模型 -->
+  <rect class="card" x="90" y="342" width="310" height="46" rx="8"/>
+  <text class="t name" x="245" y="364" text-anchor="middle">注入上下文</text>
+  <text class="t small" x="245" y="380" text-anchor="middle">模型只负责理解问题与组织语言</text>
+
+  <path class="line" d="M245,388 V414" marker-end="url(#ar)"/>
+
+  <rect class="card" x="90" y="416" width="310" height="42" rx="8"/>
+  <text class="t name" x="245" y="442" text-anchor="middle">生成回答</text>
+
+  <path class="line" d="M245,458 V494" marker-end="url(#ar)"/>
+
+  <!-- 输出 -->
+  <rect class="hi" x="90" y="496" width="310" height="46" rx="8"/>
+  <text class="t teal" x="245" y="518" text-anchor="middle">输出 · 每条附来源锚点</text>
+  <text class="t small" x="245" y="534" text-anchor="middle">便于人工核对与审计</text>
+
+  <!-- 精确值路径 -->
+  <path class="line" d="M400,47 H600 V96" marker-end="url(#ar)"/>
+  <rect class="card" x="470" y="98" width="260" height="46" rx="8"/>
+  <text class="t name" x="600" y="120" text-anchor="middle">定额库 · 清单库</text>
+  <text class="t small" x="600" y="136" text-anchor="middle">结构化数据，不进语义检索</text>
+
+  <path class="line" d="M600,144 V164" marker-end="url(#ar)"/>
+  <rect class="card" x="470" y="166" width="260" height="46" rx="8"/>
+  <text class="t name" x="600" y="188" text-anchor="middle">脚本化查表与计算</text>
+  <text class="t small" x="600" y="204" text-anchor="middle">单价 · 费率 · 综合单价</text>
+
+  <path class="line" d="M600,212 V232" marker-end="url(#ar)"/>
+  <rect class="card" x="470" y="234" width="260" height="46" rx="8"/>
+  <text class="t name" x="600" y="256" text-anchor="middle">精确值</text>
+  <text class="t small" x="600" y="272" text-anchor="middle">由脚本产生，模型无从篡改</text>
+
+  <path class="line" d="M600,280 V519 H400" marker-end="url(#ar)"/>
+
+  <!-- 说明块 -->
+  <rect class="box" x="470" y="320" width="260" height="130" rx="8"/>
+  <text class="t small" x="490" y="348">为什么单独走一条路</text>
+  <text class="t small" x="490" y="374">· 定额、清单是精确值，不是文本</text>
+  <text class="t small" x="490" y="398">· 语义召回可能引入错误数字</text>
+  <text class="t small" x="490" y="422">· 公式与算式统一由脚本生成</text>
+</svg>
