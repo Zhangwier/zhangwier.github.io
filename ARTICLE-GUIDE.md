@@ -88,6 +88,43 @@ summary: 40 到 70 字的一句话摘要，会显示在文章列表页和首页�
 - [ ] 没有编造的数字
 - [ ] 引用了外部资料的话,文末有「参考来源」
 
+## 八、最后一步：真的上线（最容易漏）
+
+写完文件、**甚至已经 `git commit` 之后，网站不会变**。必须推到远端并等构建完成：
+
+```bash
+git add -A
+git commit -m "Add a post on ..."
+git push origin main
+```
+
+推送后约 1 到 3 分钟生效，然后**必须验证线上**：
+
+- 文章页 `https://zhangwier.github.io/blog/<slug>/` 能打开
+- 图片 `https://zhangwier.github.io/images/<文件名>.svg` 返回 200
+
+判断有没有漏推，看这两行是否一致：
+
+```bash
+git log --oneline -1            # 本地 HEAD
+git log --oneline origin/main   # 远端 HEAD
+```
+
+**只 commit 不 push，等于什么都没做。** push 报超时或连接失败就重试——本站走本地代理 `127.0.0.1:7897`，仓库里已经配好。
+
+## 九、如果要自制 SVG 配图
+
+文件必须是**文本 SVG**，UTF-8 **不带 BOM**，且**不能含 NUL 字节**。U+0000 在 XML 里是非法字符，而浏览器渲染 SVG 用的是严格 XML 解析器——只要有一个 NUL，**整个文件都会被拒绝渲染**，页面上只留一个破图框。
+
+写完必须用解析器验证，解析不报错才算完成：
+
+```powershell
+$doc = New-Object System.Xml.XmlDocument
+$doc.Load("public/images/xxx.svg")
+```
+
+配色沿用站点：`#1e293b` 卡片底、`#334155` 描边、`#e2e8f0` 主文字、`#94a3b8` 次文字、`#5eead4` 强调。`viewBox` 宽度用 760，配 `width="100%"` 在窄栏里自适应。
+
 ## 附:已发布文章的格式样板
 
 下面是本站现有文章的骨架,你的输出结构应当与此一致。
