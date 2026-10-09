@@ -38,6 +38,10 @@ export type ProjectItem = {
   image?: string;
   imageAlt?: string;
   badge?: string;
+  category?: string;
+  featured?: boolean;
+  role?: string;
+  approach?: string;
 };
 
 export const profile = {
@@ -154,33 +158,49 @@ export const projects: ProjectItem[] = [
     summary:
       '参与高速公路概预算修编，围绕工程量、定额套用、材料价格及造价数据开展复核与分析，并参与造价成果审核。',
     tags: ['概预算', '工程量', '定额计价', '造价审核'],
+    category: '公路工程 · 概预算',
+    featured: true,
+    role: '工程量核查、定额套用、材料价格分析及造价成果审核。',
+    approach: '结合设计资料、定额依据与价格信息开展交叉核对。',
+    image: '/images/project-highway-study.svg',
+    imageAlt: '抽象道路曲线与路线研究线稿，非真实工程图纸',
   },
   {
     title: '某跨海通道钢结构造价修编项目',
     summary:
       '参与跨海通道钢结构工程造价工作，结合施工图及工程构造开展算量识图、清单计价、材料价格及定额依据分析。',
     tags: ['钢结构', '工程计量', '清单计价', '造价分析'],
+    category: '钢结构 · 造价修编',
+    featured: true,
+    role: '算量识图、清单计价、材料价格及定额依据分析。',
+    approach: '从施工图和工程构造出发，核对工程内容与计价口径。',
+    image: '/images/project-steel-study.svg',
+    imageAlt: '抽象钢结构几何线稿，非真实工程图纸',
   },
   {
     title: '某跨海通道防火专项造价项目',
+    category: '专项工程 · 防火',
     summary:
       '参与防火专项工程造价工作，围绕工程内容、清单项目及计价依据进行核查，参与专项造价成果的整理与审核。',
     tags: ['专项工程', '清单计价', '造价审核'],
   },
   {
     title: '某高速公路改扩建造价项目',
+    category: '公路工程 · 改扩建',
     summary:
       '参与高速公路改扩建项目造价工作，开展算量识图、清单编制与项目划分，并结合工程内容进行计价分析及造价文件调整。',
     tags: ['改扩建', '工程计量', '清单编制', '造价修编'],
   },
   {
     title: '某市政道路工程造价项目',
+    category: '市政道路 · 计量计价',
     summary:
       '参与市政道路人行道工程造价工作，根据设计图纸及工程内容开展工程量核查、清单计价及造价成果调整。',
     tags: ['市政道路', '工程计量', '清单计价', '造价修编'],
   },
   {
     title: '某高速公路征地审计项目',
+    category: '征地审计 · 费用核查',
     summary:
       '参与高速公路征地审计工作，围绕征地费用、相关资料及政策依据开展数据核对与资料审核，为审计成果提供基础支撑。',
     tags: ['征地审计', '费用核查', '资料审核', '审计支撑'],
