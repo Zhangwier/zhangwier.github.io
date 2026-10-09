@@ -18,7 +18,7 @@ export default function Projects() {
           项目与实践
         </h2>
         <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400">
-          从工程实体理解造价，在实际项目与个人技术探索中积累方法。
+          工程造价项目经历与个人数字化技术实践。
         </p>
       </header>
 
@@ -153,7 +153,7 @@ export default function Projects() {
               工程造价 AI 工作系统探索
             </p>
             <p className="mt-3 text-sm leading-7 text-slate-400">
-              围绕本地规范检索、定额数据结构化、任务编排与成果审查，探索更可靠的造价 AI 工作方法。
+              持续探索规范检索、定额数据结构化、任务编排与成果核查的技术实现及适用边界。
             </p>
 
             <dl className="mt-5 grid grid-cols-2 gap-3">

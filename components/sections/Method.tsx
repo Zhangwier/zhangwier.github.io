@@ -5,16 +5,16 @@ export default function Method() {
   if (profile.method.length === 0) return null;
 
   return (
-    <section id="method" className={sectionClass} aria-label="工作方式">
-      <SectionHeading>方式</SectionHeading>
+    <section id="method" className={sectionClass} aria-label="工作理念">
+      <SectionHeading>理念</SectionHeading>
 
-      <p className="mb-10 max-w-lg">把造价工作收成一条可解释、可复核的主线。</p>
+      <p className="mb-8 max-w-lg text-sm leading-7">立足工程实际，遵循专业依据，关注技术应用。</p>
 
       <ol className="group/list">
         {profile.method.map(item => (
           <li
             key={item.step}
-            className="group relative grid grid-cols-[3rem_1fr] items-baseline gap-x-4 pb-8 last:pb-0"
+            className="group relative grid grid-cols-[3rem_1fr] items-baseline gap-x-4 pb-7 last:pb-0"
           >
             <span className="font-mono text-xs font-semibold tracking-widest text-teal-300/70">
               {item.step}
