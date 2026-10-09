@@ -25,7 +25,7 @@ export default function Page() {
         <div className="lg:flex lg:justify-between lg:gap-4">
           <Sidebar />
 
-          <main id="content" className="pt-24 lg:w-[52%] lg:py-24">
+          <main id="content" className="pt-12 sm:pt-16 lg:w-[52%] lg:py-24">
             <About />
             <Focus />
             <Method />

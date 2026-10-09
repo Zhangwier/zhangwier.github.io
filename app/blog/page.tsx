@@ -16,7 +16,7 @@ export default function BlogIndexPage() {
     <div className="group/spotlight relative">
       <Spotlight />
 
-      <div className="mx-auto min-h-screen max-w-3xl px-6 py-16 md:px-8 lg:py-24">
+      <div className="mx-auto min-h-screen max-w-3xl px-5 py-10 sm:px-6 sm:py-14 md:px-8 lg:py-24">
         <Link
           href="/"
           className="text-sm font-medium text-slate-400 transition-colors hover:text-teal-300 focus-visible:text-teal-300"
@@ -24,7 +24,7 @@ export default function BlogIndexPage() {
           ← 返回首页
         </Link>
 
-        <header className="mt-10">
+        <header className="mt-8 sm:mt-10">
           <h1 className="text-2xl font-medium tracking-tight text-slate-200 sm:text-3xl">分享</h1>
           <p className="mt-3 max-w-xl text-sm leading-normal">
             技术笔记、方法梳理与踩坑记录。按时间倒序排列。
@@ -34,7 +34,7 @@ export default function BlogIndexPage() {
         {posts.length === 0 ? (
           <p className="mt-16 text-sm">还没有文章。</p>
         ) : (
-          <ul className="mt-14 space-y-14">
+          <ul className="mt-10 space-y-10 sm:mt-14 sm:space-y-14">
             {posts.map(post => (
               <li key={post.slug}>
                 <Link href={`/blog/${post.slug}`} className="group block">

@@ -35,7 +35,7 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
     <div className="group/spotlight relative">
       <Spotlight />
 
-      <div className="mx-auto min-h-screen max-w-3xl px-6 py-16 md:px-8 lg:py-24">
+      <div className="mx-auto min-h-screen max-w-3xl px-5 py-10 sm:px-6 sm:py-14 md:px-8 lg:py-24">
         <Link
           href="/blog"
           className="text-sm font-medium text-slate-400 transition-colors hover:text-teal-300 focus-visible:text-teal-300"
@@ -43,7 +43,7 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
           ← 返回分享
         </Link>
 
-        <header className="mt-10 border-b border-slate-800 pb-8">
+        <header className="mt-8 border-b border-slate-800 pb-8 sm:mt-10">
           <time
             dateTime={post.date}
             className="text-xs font-semibold uppercase tracking-widest text-slate-500"
@@ -69,7 +69,7 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
           )}
         </header>
 
-        <article className="post-body mt-10" dangerouslySetInnerHTML={{ __html: post.html }} />
+        <article className="post-body mt-8 sm:mt-10" dangerouslySetInnerHTML={{ __html: post.html }} />
 
         <footer className="mt-16 border-t border-slate-800 pt-8">
           <Link

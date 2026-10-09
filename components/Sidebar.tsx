@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { profile } from '@/data/profile';
+import { navLinks, profile } from '@/data/profile';
 import Nav from './Nav';
 import Social from './Social';
 
@@ -16,6 +16,21 @@ export default function Sidebar() {
         </h2>
 
         <p className="mt-4 max-w-xs leading-normal">{profile.tagline}</p>
+
+        <nav className="mt-7 lg:hidden" aria-label="手机端页面导航">
+          <ul className="flex flex-wrap gap-x-5 gap-y-3">
+            {navLinks.map(({ id, label }) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  className="inline-flex min-h-8 items-center border-b border-slate-700 pb-1 text-sm font-medium text-slate-300 transition-colors hover:border-teal-300 hover:text-teal-300 focus-visible:text-teal-300"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <Nav />
       </div>
