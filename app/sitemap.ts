@@ -3,6 +3,9 @@ import { getAllPostMetas } from '@/lib/posts';
 
 const siteUrl = 'https://zhangwier.github.io';
 
+// Required for GitHub Pages static export (Next.js 15 metadata routes).
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteUrl}/` },
