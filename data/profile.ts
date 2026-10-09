@@ -100,15 +100,7 @@ export const profile = {
     },
   ] satisfies MethodItem[],
 
-  skills: [
-    '算量识图',
-    '概预算修编',
-    '工程量清单',
-    '定额计价',
-    '造价审核',
-    '工程技术管理',
-    '造价数字化',
-  ],
+  skills: ['算量识图', '工程造价', '造价数字化'],
   social: [
     { label: 'GitHub', href: 'https://github.com/Zhangwier', icon: 'github' },
     { label: '邮箱', href: 'mailto:zhangwex@outlook.com', icon: 'mail' },
@@ -149,7 +141,7 @@ export const projects: ProjectItem[] = [
   {
     title: '某高速公路概预算修编项目',
     summary:
-      '参与高速公路工程概预算修编，涉及工程数量、定额适用性、材料价格及造价成果核查。',
+      '高速公路工程概预算修编，涉及设计工程数量、定额依据及材料价格等计价要素。',
     tags: ['概预算', '工程量', '定额计价', '造价审核'],
     category: '公路工程 · 概预算',
     featured: true,
@@ -161,7 +153,7 @@ export const projects: ProjectItem[] = [
   {
     title: '某跨海通道钢结构造价修编项目',
     summary:
-      '参与跨海通道钢结构造价修编，涉及施工图识读、工程数量计算及清单计价依据分析。',
+      '跨海通道钢结构造价修编，重点关注结构构造与清单计量、计价规则的对应关系。',
     tags: ['钢结构', '工程计量', '清单计价', '造价分析'],
     category: '钢结构 · 造价修编',
     featured: true,

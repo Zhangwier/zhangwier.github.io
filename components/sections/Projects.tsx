@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { projects } from '@/data/profile';
-import SectionHeading, { sectionClass } from '@/components/SectionKit';
+import { sectionClass } from '@/components/SectionKit';
 
 const featuredProjects = projects.filter(project => project.featured);
 const otherProjects = projects.filter(project => !project.featured);
@@ -8,10 +8,8 @@ const otherProjects = projects.filter(project => !project.featured);
 export default function Projects() {
   return (
     <section id="projects" className={sectionClass} aria-label="项目与实践">
-      <SectionHeading>项目</SectionHeading>
-
       <header className="mb-9 sm:mb-11">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-300/80">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal-300/80">
           Selected work
         </p>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-200 sm:text-[28px]">
@@ -27,7 +25,7 @@ export default function Projects() {
           <div className="mb-5 flex items-baseline gap-3">
             <span className="font-mono text-xs tracking-widest text-teal-300/75">01</span>
             <h3 className="text-sm font-medium tracking-wide text-slate-200">代表工程项目</h3>
-            <span className="ml-auto text-[10px] uppercase tracking-wider text-slate-500">
+            <span className="ml-auto hidden text-xs uppercase tracking-wider text-slate-400 sm:inline">
               Selected cases
             </span>
           </div>
@@ -53,7 +51,7 @@ export default function Projects() {
                   )}
 
                   <div className="p-4 sm:p-6">
-                    <p className="text-[11px] font-medium tracking-wide text-teal-300/80">
+                    <p className="text-xs font-medium tracking-wide text-teal-300/80">
                       {project.category}
                     </p>
                     <h4 className="mt-2 text-base font-semibold leading-relaxed text-slate-100 sm:text-lg">
@@ -66,7 +64,7 @@ export default function Projects() {
                       <dl className="mt-5 grid gap-4 border-t border-slate-700/60 pt-4 sm:grid-cols-2 sm:gap-5">
                         {project.role && (
                           <div>
-                            <dt className="mb-1 text-[11px] font-medium tracking-wide text-slate-500">
+                            <dt className="mb-1 text-xs font-medium tracking-wide text-slate-400">
                               个人参与
                             </dt>
                             <dd className="text-[13px] leading-6 text-slate-300">
@@ -76,7 +74,7 @@ export default function Projects() {
                         )}
                         {project.approach && (
                           <div>
-                            <dt className="mb-1 text-[11px] font-medium tracking-wide text-slate-500">
+                            <dt className="mb-1 text-xs font-medium tracking-wide text-slate-400">
                               工作方法
                             </dt>
                             <dd className="text-[13px] leading-6 text-slate-300">
@@ -86,7 +84,7 @@ export default function Projects() {
                         )}
                       </dl>
                     )}
-                    <p className="mt-4 text-xs leading-6 text-slate-500">
+                    <p className="mt-4 text-xs leading-6 text-slate-400">
                       {project.tags.slice(0, 3).join(' / ')}
                     </p>
                   </div>
@@ -102,7 +100,7 @@ export default function Projects() {
           <div className="mb-4 flex items-baseline gap-3">
             <span className="font-mono text-xs tracking-widest text-teal-300/75">02</span>
             <h3 className="text-sm font-medium tracking-wide text-slate-200">更多工程经历</h3>
-            <span className="ml-auto text-[10px] uppercase tracking-wider text-slate-500">
+            <span className="ml-auto hidden text-xs uppercase tracking-wider text-slate-400 sm:inline">
               More experience
             </span>
           </div>
@@ -110,11 +108,11 @@ export default function Projects() {
           <ol className="divide-y divide-slate-800 border-y border-slate-800">
             {otherProjects.map((project, index) => (
               <li key={project.title} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-3 py-5 sm:gap-x-4 sm:py-6">
-                <span className="pt-0.5 font-mono text-xs tabular-nums text-slate-600">
+                <span className="pt-0.5 font-mono text-xs tabular-nums text-slate-400">
                   {String(index + 3).padStart(2, '0')}
                 </span>
                 <div className="min-w-0">
-                  <p className="mb-1 text-[11px] tracking-wide text-teal-300/75">
+                  <p className="mb-1 text-xs tracking-wide text-teal-300/85">
                     {project.category}
                   </p>
                   <h4 className="text-[15px] font-medium leading-6 text-slate-200">
@@ -134,7 +132,7 @@ export default function Projects() {
         <div className="mb-4 flex items-baseline gap-3">
           <span className="font-mono text-xs tracking-widest text-teal-300/75">03</span>
           <h3 className="text-sm font-medium tracking-wide text-slate-200">个人技术实践</h3>
-          <span className="ml-auto text-[10px] uppercase tracking-wider text-slate-500">
+          <span className="ml-auto hidden text-xs uppercase tracking-wider text-slate-400 sm:inline">
             Independent study
           </span>
         </div>
@@ -143,7 +141,7 @@ export default function Projects() {
           <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-teal-300/5 blur-3xl" />
 
           <div className="relative">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-300/80">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-300/80">
               Research in progress
             </p>
             <h4 className="mt-3 text-2xl font-semibold tracking-tight text-slate-100">
@@ -167,7 +165,7 @@ export default function Projects() {
               </div>
             </dl>
 
-            <p className="mt-3 text-xs leading-5 text-slate-500">
+            <p className="mt-3 text-xs leading-5 text-slate-400">
               阶段性内部实验，非实际工程审核准确率；系统仍在持续验证。
             </p>
 

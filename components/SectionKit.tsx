@@ -4,10 +4,10 @@ import { profile } from '@/data/profile';
  * 移动端滚到某个区块时，顶部会浮出一条带毛玻璃的区块标题。
  * 大屏隐藏（lg:sr-only），因为左栏导航已经标示了位置。
  */
-export default function SectionHeading({ id, children }: { id?: string; children: React.ReactNode }) {
+export default function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="sticky top-0 z-20 -mx-6 mb-5 w-auto border-b border-slate-800/70 bg-slate-900/90 px-6 py-3.5 backdrop-blur-md md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:border-0 lg:px-0 lg:py-0 lg:opacity-0">
-      <h2 id={id} className="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">
+    <div className="sticky top-0 z-20 -mx-6 mb-5 border-b border-slate-800/70 bg-slate-900/90 px-6 py-3.5 backdrop-blur-md md:-mx-12 md:px-12 lg:static lg:z-auto lg:mx-0 lg:mb-8 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
+      <h2 className="text-sm font-semibold tracking-[0.15em] text-slate-200 lg:text-[13px] lg:text-slate-300">
         {children}
       </h2>
     </div>

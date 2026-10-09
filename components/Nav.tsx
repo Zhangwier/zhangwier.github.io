@@ -53,7 +53,7 @@ export default function Nav() {
                 />
                 <span
                   className={`transition-colors motion-reduce:transition-none ${
-                    isActive ? 'text-slate-200' : 'text-slate-500 group-hover:text-slate-200'
+                    isActive ? 'text-slate-200' : 'text-slate-400 group-hover:text-slate-200'
                   }`}
                 >
                   {label}

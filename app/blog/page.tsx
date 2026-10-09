@@ -6,7 +6,8 @@ import Spotlight from '@/components/Spotlight';
 
 export const metadata: Metadata = {
   title: `分享 · ${profile.name}`,
-  description: '技术笔记、方法梳理与踩坑记录。',
+  description: '工程造价实践、AI 技术探索与个人研究笔记。',
+  alternates: { canonical: '/blog/' },
 };
 
 export default function BlogIndexPage() {
@@ -27,7 +28,7 @@ export default function BlogIndexPage() {
         <header className="mt-8 sm:mt-10">
           <h1 className="text-2xl font-medium tracking-tight text-slate-200 sm:text-3xl">分享</h1>
           <p className="mt-3 max-w-xl text-sm leading-normal">
-            技术笔记、方法梳理与踩坑记录。按时间倒序排列。
+            工程造价实践、技术研究与个人思考。按发布时间倒序排列。
           </p>
         </header>
 
@@ -40,7 +41,7 @@ export default function BlogIndexPage() {
                 <Link href={`/blog/${post.slug}`} className="group block">
                   <time
                     dateTime={post.date}
-                    className="text-xs font-semibold uppercase tracking-widest text-slate-500"
+                    className="text-xs font-semibold uppercase tracking-widest text-slate-400"
                   >
                     {formatDate(post.date)}
                   </time>

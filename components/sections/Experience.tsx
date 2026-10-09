@@ -11,7 +11,7 @@ export default function Experience() {
           {experience.map(item => (
             <li key={`${item.company}-${item.title}`} className="mb-12">
               <HoverCard>
-                <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">
+                <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-400 sm:col-span-2">
                   {item.range}
                 </header>
 

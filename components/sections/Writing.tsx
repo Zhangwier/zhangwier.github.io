@@ -23,7 +23,7 @@ export default function Writing() {
               <div className="z-10 sm:col-span-8">
                 <time
                   dateTime={post.date}
-                  className="text-xs font-semibold uppercase tracking-widest text-slate-500"
+                  className="text-xs font-semibold uppercase tracking-widest text-slate-400"
                 >
                   {formatDate(post.date)}
                 </time>

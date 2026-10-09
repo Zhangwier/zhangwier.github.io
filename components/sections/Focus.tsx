@@ -11,7 +11,7 @@ export default function Focus() {
       <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
         {profile.focus.map(item => (
           <li key={item.subtitle}>
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">
               {item.subtitle}
             </p>
             <h3 className="mt-2 font-medium leading-snug text-slate-200">{item.title}</h3>

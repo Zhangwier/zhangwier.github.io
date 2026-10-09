@@ -18,7 +18,8 @@ export type PostMeta = {
   summary: string;
 };
 
-export type Post = PostMeta & { html: string };
+export type TocItem = { id: string; title: string };
+export type Post = PostMeta & { html: string; toc: TocItem[] };
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -43,13 +44,33 @@ function parseFile(fileName: string): Post {
   const raw = fs.readFileSync(path.join(POSTS_DIR, fileName), 'utf8');
   const { data, content } = matter(raw);
 
+  const toc: TocItem[] = [];
+  // The Markdown renderer does not add heading IDs by default. Inject stable
+  // section anchors so the static article table of contents works without JS.
+  const html = (marked.parse(content) as string).replace(
+    /<h2>([\s\S]*?)<\/h2>/g,
+    (_match, inner: string) => {
+      const id = `section-${toc.length + 1}`;
+      const title = inner
+        .replace(/<[^>]*>/g, '')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .trim();
+      toc.push({ id, title });
+      return `<h2 id="${id}">${inner}</h2>`;
+    },
+  );
+
   return {
     slug,
     title: typeof data.title === 'string' && data.title.trim() ? data.title.trim() : slug,
     date: normalizeDate(data.date),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     summary: typeof data.summary === 'string' ? data.summary.trim() : '',
-    html: marked.parse(content) as string,
+    html,
+    toc,
   };
 }
 
@@ -62,7 +83,7 @@ export function getAllPosts(): Post[] {
 
 /** 列表页只需要元信息，不必渲染正文。 */
 export function getAllPostMetas(): PostMeta[] {
-  return getAllPosts().map(({ html: _html, ...meta }) => meta);
+  return getAllPosts().map(({ slug, title, date, tags, summary }) => ({ slug, title, date, tags, summary }));
 }
 
 export function getPost(slug: string): Post | null {

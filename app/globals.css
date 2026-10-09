@@ -119,3 +119,6 @@ html {
     min-width: 8rem;
   }
 }
+
+/* Anchor targets for the article table of contents. */
+.post-body h2[id] { scroll-margin-top: 5rem; }
