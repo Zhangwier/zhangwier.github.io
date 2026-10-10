@@ -7,7 +7,7 @@ import { profile } from '@/data/profile';
 export default function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="sticky top-0 z-20 -mx-6 mb-5 border-b border-slate-800/70 bg-slate-900/90 px-6 py-3.5 backdrop-blur-md md:-mx-12 md:px-12 lg:static lg:z-auto lg:mx-0 lg:mb-8 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
-      <h2 className="text-sm font-semibold tracking-[0.15em] text-slate-200 lg:text-[13px] lg:text-slate-300">
+      <h2 className="text-sm font-semibold tracking-[0.08em] text-slate-200 lg:text-[22px] lg:font-semibold lg:tracking-tight lg:text-slate-100">
         {children}
       </h2>
     </div>
@@ -45,7 +45,7 @@ export function HoverCard({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const sectionClass = 'mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24';
+export const sectionClass = 'mb-16 scroll-mt-16 md:mb-20 lg:mb-28 lg:scroll-mt-24';
 
 export function ResumeLink() {
   // 没配简历文件就不显示入口，免得点出 404。

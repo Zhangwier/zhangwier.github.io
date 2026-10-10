@@ -21,15 +21,15 @@ export default function Page() {
           跳到内容
         </a>
 
-        <div className="lg:flex lg:justify-between lg:gap-4">
+        <div className="lg:flex lg:justify-between lg:gap-6">
           <Sidebar />
 
-          <main id="content" className="pt-12 sm:pt-16 lg:w-[52%] lg:py-24">
+          <main id="content" className="pt-12 sm:pt-16 lg:w-[59%] lg:py-24">
             <About />
-            <Focus />
-            <Method />
-            <Experience />
             <Projects />
+            <Focus />
+            <Experience />
+            <Method />
 
             <Footer />
           </main>

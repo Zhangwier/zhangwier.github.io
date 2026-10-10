@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       url: '/og-cover.png',
       width: 1200,
       height: 630,
-      alt: 'ZhangWex 个人主页：交通工程、工程造价与数字化实践',
+      alt: 'ZhangWex 个人主页：工程造价咨询',
     }],
   },
   twitter: {

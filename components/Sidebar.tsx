@@ -5,17 +5,17 @@ import Social from './Social';
 
 export default function Sidebar() {
   return (
-    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
+    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[38%] lg:shrink-0 lg:flex-col lg:justify-between lg:py-24">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+        <h1 className="text-4xl font-semibold tracking-tight text-slate-100 sm:text-5xl">
           <Link href="/">{profile.name}</Link>
         </h1>
 
-        <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+        <h2 className="mt-5 text-xl font-medium tracking-tight text-slate-200 sm:text-2xl">
           {profile.title}
         </h2>
 
-        <p className="mt-4 max-w-xs leading-normal">{profile.tagline}</p>
+        <p className="mt-4 max-w-sm text-[15px] leading-7">{profile.tagline}</p>
 
         <nav className="mt-7 lg:hidden" aria-label="个人介绍章节">
           <ul className="flex flex-wrap gap-x-5 gap-y-3">
