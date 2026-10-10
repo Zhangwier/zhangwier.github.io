@@ -2,6 +2,9 @@
 title: 人工智能简史：从图灵到大语言模型（图解入门）
 date: 2026-10-10
 tags: [人工智能, 科普入门, 机器学习, 深度学习, Transformer]
+category: 人工智能
+cover: /images/ai-history-concepts.svg
+featured: true
 summary: 从“机器能否思考”讲到 ChatGPT：用 11 张原创图解、4 个基础公式和生活化例子，理解人工智能的起源、技术演进及其能力边界。
 ---
 

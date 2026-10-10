@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Spotlight from '@/components/Spotlight';
 import Sidebar from '@/components/Sidebar';
 import About from '@/components/sections/About';
@@ -5,12 +6,11 @@ import Focus from '@/components/sections/Focus';
 import Method from '@/components/sections/Method';
 import Experience from '@/components/sections/Experience';
 import Projects from '@/components/sections/Projects';
-import Writing from '@/components/sections/Writing';
 import Footer from '@/components/Footer';
 
+/** Portfolio only: articles live in the independent /blog/ reading space. */
 export default function Page() {
   return (
-    // group/spotlight 留给以后与光斑联动的悬停效果；光斑层本身是 fixed 定位。
     <div className="group/spotlight relative">
       <Spotlight />
 
@@ -31,7 +31,22 @@ export default function Page() {
             <Method />
             <Experience />
             <Projects />
-            <Writing />
+
+            <section aria-labelledby="blog-invitation" className="mb-20 rounded-xl border border-slate-700/70 bg-gradient-to-br from-slate-800/65 to-slate-900 p-6 sm:p-8 lg:mb-28">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-300/85">WRITINGS & NOTES</p>
+              <h2 id="blog-invitation" className="mt-3 text-xl font-semibold text-slate-100">研究与写作</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                工程造价实践、人工智能研究与个人思考，独立整理在博客中。
+              </p>
+              <Link
+                href="/blog/"
+                className="group mt-5 inline-flex min-h-10 items-center gap-2 border-b border-teal-300/50 text-sm font-medium text-teal-200 transition-colors hover:border-teal-200 hover:text-teal-100"
+              >
+                进入博客
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1 motion-reduce:transform-none">→</span>
+              </Link>
+            </section>
+
             <Footer />
           </main>
         </div>

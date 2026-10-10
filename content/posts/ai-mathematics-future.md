@@ -2,6 +2,8 @@
 title: 当 AI 开始证明数学：谁有权定义知识的未来？
 date: 2026-10-10
 tags: [人工智能, 数学研究, 科学伦理, 知识共享]
+category: 观点与思考
+cover: /images/math-ai-knowledge.svg
 summary: 从 OpenAI 公布大批数学研究结果引发的争议出发，区分证明、理解与科学共同体的认可，讨论为什么既应拥抱 AI 的发现能力，也要警惕算力和研究议程的集中。
 ---
 

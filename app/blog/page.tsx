@@ -1,77 +1,45 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { profile } from '@/data/profile';
-import { formatDate, getAllPostMetas } from '@/lib/posts';
-import Spotlight from '@/components/Spotlight';
+import { getAllPostMetas } from '@/lib/posts';
+import BlogExplorer from '@/components/blog/BlogExplorer';
 
 export const metadata: Metadata = {
-  title: `分享 · ${profile.name}`,
-  description: '工程造价实践、AI 技术探索与个人研究笔记。',
+  title: `研究与写作 · ${profile.name}`,
+  description: '关于工程造价、人工智能与技术应用的观察、实践和学习记录。',
   alternates: { canonical: '/blog/' },
+  openGraph: {
+    title: `研究与写作 · ${profile.name}`,
+    description: '工程造价实践、人工智能研究与个人思考。',
+    type: 'website',
+    url: '/blog/',
+    images: [{ url: '/og-cover.png', width: 1200, height: 630 }],
+  },
 };
 
 export default function BlogIndexPage() {
   const posts = getAllPostMetas();
 
   return (
-    <div className="group/spotlight relative">
-      <Spotlight />
+    <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
+      <header className="relative pb-12 pt-16 sm:pb-16 sm:pt-20 lg:pb-20 lg:pt-24">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal-300/90">ZHANGWEX / FIELD NOTES</p>
+        <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight text-slate-100 sm:text-5xl lg:text-[60px]">
+          研究与写作<span className="text-teal-300">.</span>
+        </h1>
+        <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+          关于工程造价、人工智能与技术应用的观察、方法和学习记录。
+          在这里整理专业实践，也记录值得继续思考的问题。
+        </p>
+        <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-400">
+          <span className="font-mono text-teal-300">{String(posts.length).padStart(2, '0')} POSTS</span>
+          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-slate-600" />
+          <span>独立阅读空间</span>
+          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-slate-600" />
+          <span>按主题与日期归档</span>
+        </div>
+      </header>
 
-      <div className="mx-auto min-h-screen max-w-3xl px-5 py-10 sm:px-6 sm:py-14 md:px-8 lg:py-24">
-        <Link
-          href="/"
-          className="text-sm font-medium text-slate-400 transition-colors hover:text-teal-300 focus-visible:text-teal-300"
-        >
-          ← 返回首页
-        </Link>
-
-        <header className="mt-8 sm:mt-10">
-          <h1 className="text-2xl font-medium tracking-tight text-slate-200 sm:text-3xl">分享</h1>
-          <p className="mt-3 max-w-xl text-sm leading-normal">
-            工程造价实践、技术研究与个人思考。按发布时间倒序排列。
-          </p>
-        </header>
-
-        {posts.length === 0 ? (
-          <p className="mt-16 text-sm">还没有文章。</p>
-        ) : (
-          <ul className="mt-10 space-y-10 sm:mt-14 sm:space-y-14">
-            {posts.map(post => (
-              <li key={post.slug}>
-                <Link href={`/blog/${post.slug}`} className="group block">
-                  <time
-                    dateTime={post.date}
-                    className="text-xs font-semibold uppercase tracking-widest text-slate-400"
-                  >
-                    {formatDate(post.date)}
-                  </time>
-
-                  <h2 className="mt-2 text-lg font-medium leading-snug text-slate-200 transition-colors group-hover:text-teal-300">
-                    {post.title}
-                  </h2>
-
-                  {post.summary && (
-                    <p className="mt-3 text-sm leading-normal">{post.summary}</p>
-                  )}
-
-                  {post.tags.length > 0 && (
-                    <ul className="mt-4 flex flex-wrap gap-2">
-                      {post.tags.map(tag => (
-                        <li
-                          key={tag}
-                          className="rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300"
-                        >
-                          {tag}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <BlogExplorer posts={posts} />
     </div>
   );
 }

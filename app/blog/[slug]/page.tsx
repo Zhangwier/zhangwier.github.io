@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { profile } from '@/data/profile';
 import { formatDate, getAllPostMetas, getPost } from '@/lib/posts';
-import Spotlight from '@/components/Spotlight';
 
 type Params = { slug: string };
 
@@ -41,19 +40,23 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
   const post = getPost(slug);
   if (!post) notFound();
 
-  return (
-    <div className="group/spotlight relative">
-      <Spotlight />
+  const allPosts = getAllPostMetas();
+  const currentIndex = allPosts.findIndex(item => item.slug === post.slug);
+  const nextPost = allPosts[currentIndex + 1] ?? allPosts.find(item => item.slug !== post.slug);
 
-      <div className="mx-auto min-h-screen max-w-3xl px-5 py-10 sm:px-6 sm:py-14 md:px-8 lg:py-24">
+  return (
+    <div className="mx-auto max-w-4xl px-5 pb-8 pt-12 sm:px-8 sm:pt-16 lg:px-12 lg:pt-20">
         <Link
-          href="/blog"
+          href="/blog/#articles"
           className="text-sm font-medium text-slate-400 transition-colors hover:text-teal-300 focus-visible:text-teal-300"
         >
-          ← 返回分享
+          ← 所有文章
         </Link>
 
-        <header className="mt-8 border-b border-slate-800 pb-8 sm:mt-10">
+        <header className="mt-10 border-b border-slate-800 pb-8 sm:mt-12">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-teal-300">
+            {post.category} <span className="px-2 text-slate-600">/</span> ARTICLE
+          </p>
           <time
             dateTime={post.date}
             className="text-xs font-semibold uppercase tracking-widest text-slate-400"
@@ -61,9 +64,13 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
             {formatDate(post.date)}
           </time>
 
-          <h1 className="mt-3 text-2xl font-medium leading-snug tracking-tight text-slate-200 sm:text-3xl">
+          <h1 className="mt-3 text-3xl font-semibold leading-snug tracking-tight text-slate-100 sm:text-4xl">
             {post.title}
           </h1>
+
+          {post.summary && (
+            <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300">{post.summary}</p>
+          )}
 
           {post.tags.length > 0 && (
             <ul className="mt-5 flex flex-wrap gap-2">
@@ -81,7 +88,7 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
 
         {post.toc.length > 2 && (
           <div className="mt-8 sm:mt-10">
-            <nav aria-label="本文目录" className="hidden rounded-lg border border-slate-800 bg-slate-800/25 p-5 sm:block">
+            <nav aria-label="本文目录" className="hidden rounded-xl border border-slate-800 bg-slate-900/65 p-6 sm:block">
               <p className="text-sm font-medium text-slate-200">本文目录</p>
               <ol className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
                 {post.toc.map(({ id, title }, index) => (
@@ -95,7 +102,7 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
               </ol>
             </nav>
 
-            <details className="rounded-lg border border-slate-700/70 bg-slate-800/30 p-4 sm:hidden">
+            <details className="rounded-xl border border-slate-700/70 bg-slate-900/65 p-4 sm:hidden">
               <summary className="cursor-pointer select-none text-sm font-medium text-slate-200">
                 本文目录（点击展开）
               </summary>
@@ -118,14 +125,26 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
         <article className="post-body mt-8 sm:mt-10" dangerouslySetInnerHTML={{ __html: post.html }} />
 
         <footer className="mt-16 border-t border-slate-800 pt-8">
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-slate-400 transition-colors hover:text-teal-300 focus-visible:text-teal-300"
-          >
-            ← 返回分享
-          </Link>
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-teal-300">继续阅读</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Link
+              href="/blog/#articles"
+              className="group flex min-h-24 flex-col justify-center rounded-xl border border-slate-800 bg-slate-900/70 p-5 transition-colors hover:border-slate-600"
+            >
+              <span className="text-xs text-slate-400">文章归档</span>
+              <span className="mt-2 font-medium text-slate-100 group-hover:text-teal-200">返回所有文章 →</span>
+            </Link>
+            {nextPost && (
+              <Link
+                href={`/blog/${nextPost.slug}/`}
+                className="group flex min-h-24 flex-col justify-center rounded-xl border border-slate-800 bg-slate-900/70 p-5 transition-colors hover:border-slate-600"
+              >
+                <span className="text-xs text-slate-400">下一篇文章</span>
+                <span className="mt-2 line-clamp-2 font-medium leading-relaxed text-slate-100 group-hover:text-teal-200">{nextPost.title}</span>
+              </Link>
+            )}
+          </div>
         </footer>
-      </div>
     </div>
   );
 }

@@ -192,8 +192,7 @@ export const projects: ProjectItem[] = [
   },
 ];
 
-// 「分享」区块的内容不再写在这里：文章是 content/posts/ 下的 Markdown 文件，
-// 由 lib/posts.ts 在构建期读取，首页自动显示最新几篇。
+// 文章已经迁至独立的 /blog/ 阅读区域，首页不再展示文章列表。
 
 // 导航项与页面区块一一对应；隐藏区块时记得同步删掉这里的条目。
 export const navLinks = [
@@ -202,5 +201,4 @@ export const navLinks = [
   { id: 'method', label: '理念' },
   { id: 'experience', label: '经历' },
   { id: 'projects', label: '项目' },
-  { id: 'writing', label: '分享' },
 ];

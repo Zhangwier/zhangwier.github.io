@@ -10,13 +10,32 @@ import { marked } from 'marked';
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts');
 
+export type PostCategory = '人工智能' | '工程造价' | '技术实践' | '观点与思考';
+
 export type PostMeta = {
   slug: string;
   title: string;
   date: string;
   tags: string[];
   summary: string;
+  category: PostCategory;
+  cover?: string;
+  featured: boolean;
 };
+
+const VALID_CATEGORIES: PostCategory[] = ['人工智能', '工程造价', '技术实践', '观点与思考'];
+
+/** Explicit frontmatter category is preferred; older posts retain a safe fallback. */
+function normalizeCategory(value: unknown, tags: string[]): PostCategory {
+  if (typeof value === 'string' && VALID_CATEGORIES.includes(value as PostCategory)) {
+    return value as PostCategory;
+  }
+  if (tags.includes('科普入门')) return '人工智能';
+  if (tags.includes('科学伦理') || tags.includes('知识共享')) return '观点与思考';
+  if (tags.includes('RAG') || tags.includes('AI工作流')) return '技术实践';
+  if (tags.includes('造价智能化') || tags.includes('工程实践')) return '工程造价';
+  return '观点与思考';
+}
 
 export type TocItem = { id: string; title: string };
 export type Post = PostMeta & { html: string; toc: TocItem[] };
@@ -63,12 +82,19 @@ function parseFile(fileName: string): Post {
     },
   );
 
+  const tags = Array.isArray(data.tags) ? data.tags.map(String) : [];
+  const cover = typeof data.cover === 'string' && /^\/images\/[A-Za-z0-9_-]+\.(svg|png|webp)$/i.test(data.cover)
+    ? data.cover : undefined;
+
   return {
     slug,
     title: typeof data.title === 'string' && data.title.trim() ? data.title.trim() : slug,
     date: normalizeDate(data.date),
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    tags,
     summary: typeof data.summary === 'string' ? data.summary.trim() : '',
+    category: normalizeCategory(data.category, tags),
+    cover,
+    featured: data.featured === true,
     html,
     toc,
   };
@@ -83,7 +109,9 @@ export function getAllPosts(): Post[] {
 
 /** 列表页只需要元信息，不必渲染正文。 */
 export function getAllPostMetas(): PostMeta[] {
-  return getAllPosts().map(({ slug, title, date, tags, summary }) => ({ slug, title, date, tags, summary }));
+  return getAllPosts().map(({ slug, title, date, tags, summary, category, cover, featured }) => (
+    { slug, title, date, tags, summary, category, cover, featured }
+  ));
 }
 
 export function getPost(slug: string): Post | null {

@@ -2,6 +2,8 @@
 title: 造价知识中枢（CostRAG）：从知识检索走向可验证的 AI 工作系统
 date: 2026-09-21
 tags: [造价智能化, RAG, 工程实践, AI工作流]
+category: 技术实践
+cover: /images/costrag-system-v2.svg
 summary: 从本地知识整理和24条检索用例出发，复盘造价RAG的实际边界，并说明如何将结构化查询、业务规则、任务编排和独立审查组合成可验证的工作系统。
 ---
 
