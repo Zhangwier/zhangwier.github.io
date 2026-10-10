@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="830" viewBox="0 0 900 830" role="img" aria-label="注意力机制：哪些词与当前词有关？">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1425"/><stop offset="1" stop-color="#132d3d"/></linearGradient><pattern id="dots" patternUnits="userSpaceOnUse" width="36" height="36"><circle cx="1" cy="1" r="1" fill="#507086" opacity="0.25"/></pattern><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#5eead4"/></marker><marker id="arrowblue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#7dd3fc"/></marker></defs>
+<rect width="900" height="830" fill="url(#g)"/><rect width="900" height="830" fill="url(#dots)"/>
+<rect x="18" y="18" width="864" height="794" rx="22" fill="none" stroke="#38516a" stroke-opacity="0.72"/>
+<text x="55" y="87" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="35" font-weight="700" fill="#e2e8f0" text-anchor="start">注意力机制：哪些词与当前词有关？</text>
+<text x="56" y="124" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">示意句：“小明 打开 雨伞，因为 外面 下雨了。”</text>
+<line x1="56" y1="147" x2="844" y2="147" stroke="#38516a" stroke-width="1" stroke-linecap="round" opacity="1"/>
+<rect x="108" y="214" width="112" height="67" rx="12" fill="#15283d" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="164" y="259" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="650" fill="#e2e8f0" text-anchor="middle">小明</text>
+<rect x="252" y="214" width="112" height="67" rx="12" fill="#15283d" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="308" y="259" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="650" fill="#e2e8f0" text-anchor="middle">打开</text>
+<rect x="396" y="214" width="112" height="67" rx="12" fill="#5eead4" fill-opacity="1"/>
+<text x="452" y="259" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="650" fill="#0b1425" text-anchor="middle">雨伞</text>
+<rect x="540" y="214" width="112" height="67" rx="12" fill="#15283d" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="596" y="259" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="650" fill="#e2e8f0" text-anchor="middle">因为</text>
+<rect x="684" y="214" width="112" height="67" rx="12" fill="#7dd3fc" fill-opacity="1"/>
+<text x="740" y="259" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="650" fill="#0b1425" text-anchor="middle">下雨</text>
+<path d="M452 290 C460 431 705 429 741 290" fill="none" stroke="#5eead4" stroke-width="5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="595" y="418" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="25" font-weight="550" fill="#5eead4" text-anchor="middle">雨伞 ↔ 下雨</text>
+<text x="453" y="504" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="23" font-weight="400" fill="#b9c8d6" text-anchor="middle">理解“雨伞”时，模型可以参考“下雨”等上下文。</text>
+<rect x="91" y="555" width="716" height="125" rx="12" fill="#102236" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="451" y="602" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="27" font-weight="650" fill="#e2e8f0" text-anchor="middle">Attention(Q, K, V)</text>
+<text x="451" y="651" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="25" font-weight="600" fill="#5eead4" text-anchor="middle">= softmax(QKᵀ / √dₖ) · V</text>
+<text x="99" y="730" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">Q：查找需求  /  K：匹配线索  /  V：被聚合的信息</text>
+<text x="99" y="762" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">连线仅表示原理，不是某个真实模型测出的注意力权重。</text>
+</svg>

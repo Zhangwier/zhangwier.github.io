@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="960" viewBox="0 0 900 960" role="img" aria-label="现代 AI：感知、学习与生成">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1425"/><stop offset="1" stop-color="#132d3d"/></linearGradient><pattern id="dots" patternUnits="userSpaceOnUse" width="36" height="36"><circle cx="1" cy="1" r="1" fill="#507086" opacity="0.25"/></pattern><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#5eead4"/></marker><marker id="arrowblue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#7dd3fc"/></marker></defs>
+<rect width="900" height="960" fill="url(#g)"/><rect width="900" height="960" fill="url(#dots)"/>
+<rect x="18" y="18" width="864" height="924" rx="22" fill="none" stroke="#38516a" stroke-opacity="0.72"/>
+<text x="55" y="87" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="35" font-weight="700" fill="#e2e8f0" text-anchor="start">现代 AI：感知、学习与生成</text>
+<text x="56" y="124" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">2010 年代至今 · 重要里程碑（选择性整理）</text>
+<line x1="56" y1="147" x2="844" y2="147" stroke="#38516a" stroke-width="1" stroke-linecap="round" opacity="1"/>
+<line x1="105" y1="210" x2="105" y2="817" stroke="#38516a" stroke-width="5" stroke-linecap="round" opacity="1"/>
+<circle cx="105" cy="205" r="11" fill="#7dd3fc"/>
+<text x="144" y="212" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="24" font-weight="700" fill="#5eead4" text-anchor="start">2012</text>
+<text x="346" y="208" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="620" fill="#e2e8f0" text-anchor="start">AlexNet</text>
+<text x="346" y="244" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">深度网络推动视觉识别进步</text>
+<circle cx="105" cy="322" r="11" fill="#7dd3fc"/>
+<text x="144" y="329" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="24" font-weight="700" fill="#5eead4" text-anchor="start">2016</text>
+<text x="346" y="325" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="620" fill="#e2e8f0" text-anchor="start">AlphaGo</text>
+<text x="346" y="361" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">神经网络、搜索与强化学习结合</text>
+<circle cx="105" cy="439" r="11" fill="#5eead4"/>
+<text x="144" y="446" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="24" font-weight="700" fill="#5eead4" text-anchor="start">2017</text>
+<text x="346" y="442" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="620" fill="#e2e8f0" text-anchor="start">Transformer</text>
+<text x="346" y="478" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">以注意力机制改进序列建模</text>
+<circle cx="105" cy="556" r="11" fill="#7dd3fc"/>
+<text x="144" y="563" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="24" font-weight="700" fill="#5eead4" text-anchor="start">2020</text>
+<text x="346" y="559" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="620" fill="#e2e8f0" text-anchor="start">GPT-3</text>
+<text x="346" y="595" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">大规模预训练与提示学习受关注</text>
+<circle cx="105" cy="673" r="11" fill="#5eead4"/>
+<text x="144" y="680" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="24" font-weight="700" fill="#5eead4" text-anchor="start">2022</text>
+<text x="346" y="676" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="620" fill="#e2e8f0" text-anchor="start">ChatGPT</text>
+<text x="346" y="712" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">对话式生成 AI 进入大众视野</text>
+<circle cx="105" cy="790" r="11" fill="#7dd3fc"/>
+<text x="144" y="797" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="24" font-weight="700" fill="#5eead4" text-anchor="start">2020s</text>
+<text x="346" y="793" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="28" font-weight="620" fill="#e2e8f0" text-anchor="start">多模态与智能体系统</text>
+<text x="346" y="829" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">模型与工具、检索、外部环境协同</text>
+<text x="55" y="912" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="19" font-weight="400" fill="#9ab0c4" text-anchor="start">每个阶段仍有旧方法在使用；不是“新技术消灭旧技术”。</text>
+</svg>

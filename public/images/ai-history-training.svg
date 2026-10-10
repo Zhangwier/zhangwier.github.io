@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="795" viewBox="0 0 900 795" role="img" aria-label="模型是怎样一步步“学会”的？">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1425"/><stop offset="1" stop-color="#132d3d"/></linearGradient><pattern id="dots" patternUnits="userSpaceOnUse" width="36" height="36"><circle cx="1" cy="1" r="1" fill="#507086" opacity="0.25"/></pattern><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#5eead4"/></marker><marker id="arrowblue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#7dd3fc"/></marker></defs>
+<rect width="900" height="795" fill="url(#g)"/><rect width="900" height="795" fill="url(#dots)"/>
+<rect x="18" y="18" width="864" height="759" rx="22" fill="none" stroke="#38516a" stroke-opacity="0.72"/>
+<text x="55" y="87" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="35" font-weight="700" fill="#e2e8f0" text-anchor="start">模型是怎样一步步“学会”的？</text>
+<text x="56" y="124" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">预测 → 计算误差 → 调整参数 → 再预测</text>
+<line x1="56" y1="147" x2="844" y2="147" stroke="#38516a" stroke-width="1" stroke-linecap="round" opacity="1"/>
+<rect x="92" y="186" width="715" height="88" rx="12" fill="#15283d" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<rect x="112" y="205" width="60" height="47" rx="10" fill="#102236" fill-opacity="1" stroke="#5eead4" stroke-width="1"/>
+<text x="142" y="237" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="23" font-weight="700" fill="#5eead4" text-anchor="middle">01</text>
+<text x="204" y="223" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="26" font-weight="650" fill="#e2e8f0" text-anchor="start">输入样本</text>
+<text x="204" y="258" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">例如：已知房屋面积与价格</text>
+<line x1="451" y1="276" x2="451" y2="288" stroke="#5eead4" stroke-width="2" stroke-linecap="round" opacity="1" marker-end="url(#arrow)"/>
+<rect x="92" y="291" width="715" height="88" rx="12" fill="#15283d" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<rect x="112" y="310" width="60" height="47" rx="10" fill="#102236" fill-opacity="1" stroke="#5eead4" stroke-width="1"/>
+<text x="142" y="342" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="23" font-weight="700" fill="#5eead4" text-anchor="middle">02</text>
+<text x="204" y="328" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="26" font-weight="650" fill="#e2e8f0" text-anchor="start">模型预测</text>
+<text x="204" y="363" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">根据当前参数算出一个结果</text>
+<line x1="451" y1="381" x2="451" y2="393" stroke="#5eead4" stroke-width="2" stroke-linecap="round" opacity="1" marker-end="url(#arrow)"/>
+<rect x="92" y="396" width="715" height="88" rx="12" fill="#15283d" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<rect x="112" y="415" width="60" height="47" rx="10" fill="#102236" fill-opacity="1" stroke="#5eead4" stroke-width="1"/>
+<text x="142" y="447" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="23" font-weight="700" fill="#5eead4" text-anchor="middle">03</text>
+<text x="204" y="433" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="26" font-weight="650" fill="#e2e8f0" text-anchor="start">计算损失</text>
+<text x="204" y="468" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">预测值与真实值有多远？</text>
+<line x1="451" y1="486" x2="451" y2="498" stroke="#5eead4" stroke-width="2" stroke-linecap="round" opacity="1" marker-end="url(#arrow)"/>
+<rect x="92" y="501" width="715" height="88" rx="12" fill="#15283d" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<rect x="112" y="520" width="60" height="47" rx="10" fill="#102236" fill-opacity="1" stroke="#5eead4" stroke-width="1"/>
+<text x="142" y="552" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="23" font-weight="700" fill="#5eead4" text-anchor="middle">04</text>
+<text x="204" y="538" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="26" font-weight="650" fill="#e2e8f0" text-anchor="start">更新参数</text>
+<text x="204" y="573" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">把参数往减小损失的方向调整</text>
+<rect x="89" y="629" width="723" height="103" rx="12" fill="#102236" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="451" y="666" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="27" font-weight="600" fill="#5eead4" text-anchor="middle">MSE = (1/n) · Σ (ŷᵢ − yᵢ)²</text>
+<text x="451" y="708" font-family="'DejaVu Sans Mono','Noto Sans Mono CJK SC',monospace" font-size="25" font-weight="500" fill="#7dd3fc" text-anchor="middle">θ_new = θ_old − η · ∇L(θ_old)</text>
+<text x="55" y="747" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="19" font-weight="400" fill="#9ab0c4" text-anchor="start">上式是两种常见的教学公式；真实模型的损失函数不止一种。</text>
+</svg>

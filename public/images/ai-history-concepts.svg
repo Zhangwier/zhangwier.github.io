@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="810" viewBox="0 0 900 810" role="img" aria-label="一张图理解 AI、机器学习和大模型">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1425"/><stop offset="1" stop-color="#132d3d"/></linearGradient><pattern id="dots" patternUnits="userSpaceOnUse" width="36" height="36"><circle cx="1" cy="1" r="1" fill="#507086" opacity="0.25"/></pattern><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#5eead4"/></marker><marker id="arrowblue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 3 L0 6 Z" fill="#7dd3fc"/></marker></defs>
+<rect width="900" height="810" fill="url(#g)"/><rect width="900" height="810" fill="url(#dots)"/>
+<rect x="18" y="18" width="864" height="774" rx="22" fill="none" stroke="#38516a" stroke-opacity="0.72"/>
+<text x="55" y="87" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="35" font-weight="700" fill="#e2e8f0" text-anchor="start">一张图理解 AI、机器学习和大模型</text>
+<text x="56" y="124" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="21" font-weight="400" fill="#9ab0c4" text-anchor="start">范围上的包含关系，不是先后淘汰关系</text>
+<line x1="56" y1="147" x2="844" y2="147" stroke="#38516a" stroke-width="1" stroke-linecap="round" opacity="1"/>
+<rect x="71" y="174" width="757" height="555" rx="18" fill="#1b3748" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="99" y="221" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="29" font-weight="650" fill="#e2e8f0" text-anchor="start">人工智能  /  AI</text>
+<rect x="112" y="249" width="668" height="408" rx="18" fill="#175060" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="140" y="296" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="29" font-weight="650" fill="#e2e8f0" text-anchor="start">机器学习  /  ML</text>
+<rect x="156" y="326" width="583" height="264" rx="18" fill="#176a6b" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="184" y="373" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="29" font-weight="650" fill="#e2e8f0" text-anchor="start">深度学习  /  DL</text>
+<rect x="199" y="409" width="490" height="115" rx="18" fill="#117c76" fill-opacity="1" stroke="#38516a" stroke-width="1"/>
+<text x="227" y="456" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="29" font-weight="650" fill="#e2e8f0" text-anchor="start">大语言模型  /  LLM</text>
+<text x="105" y="695" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="23" font-weight="400" fill="#b9c8d6" text-anchor="start">注意：生成式 AI 按“生成内容的能力”分类，</text>
+<text x="105" y="730" font-family="'Noto Sans CJK SC','Microsoft YaHei','PingFang SC',system-ui,sans-serif" font-size="23" font-weight="400" fill="#b9c8d6" text-anchor="start">并非比 LLM 更深的一层套盒。</text>
+</svg>
