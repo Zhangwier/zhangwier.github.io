@@ -1,10 +1,9 @@
 import Spotlight from '@/components/Spotlight';
 import Sidebar from '@/components/Sidebar';
 import About from '@/components/sections/About';
-import Focus from '@/components/sections/Focus';
-import Method from '@/components/sections/Method';
 import Experience from '@/components/sections/Experience';
 import Projects from '@/components/sections/Projects';
+import Research from '@/components/sections/Research';
 import Footer from '@/components/Footer';
 
 /** Portfolio only: articles live in the independent /blog/ reading space. */
@@ -27,9 +26,8 @@ export default function Page() {
           <main id="content" className="pt-12 sm:pt-16 lg:w-[59%] lg:py-24">
             <About />
             <Projects />
-            <Focus />
             <Experience />
-            <Method />
+            <Research />
 
             <Footer />
           </main>

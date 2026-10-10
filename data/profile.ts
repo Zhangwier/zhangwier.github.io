@@ -37,6 +37,7 @@ export type ProjectItem = {
   imageAlt?: string;
   badge?: string;
   category?: string;
+  group?: '公路工程' | '跨海通道工程' | '市政工程';
   featured?: boolean;
   role?: string;
   approach?: string;
@@ -44,8 +45,8 @@ export type ProjectItem = {
 
 export const profile = {
   name: 'ZhangWex',
-  title: '工程造价咨询',
-  tagline: '公路、桥梁及市政工程的工程计量、计价与造价核查。',
+  title: '造价',
+  tagline: '公路、桥梁及市政基础设施工程。',
   email: 'zhangwex@outlook.com',
 
   // 正文支持 **加粗** 语法，会渲染成更亮的强调色。
@@ -121,6 +122,7 @@ export const experience: ExperienceItem[] = [
 export const projects: ProjectItem[] = [
   {
     title: '高速公路概预算修编',
+    group: '公路工程',
     summary:
       '高速公路工程概预算修编，涉及设计工程数量、定额依据及材料价格等计价要素。',
     tags: ['概预算', '工程量', '定额计价', '造价审核'],
@@ -133,6 +135,7 @@ export const projects: ProjectItem[] = [
   },
   {
     title: '跨海通道钢结构造价修编',
+    group: '跨海通道工程',
     summary:
       '跨海通道钢结构造价修编，重点关注结构构造与清单计量、计价规则的对应关系。',
     tags: ['钢结构', '工程计量', '清单计价', '造价分析'],
@@ -145,6 +148,7 @@ export const projects: ProjectItem[] = [
   },
   {
     title: '跨海通道防火专项工程造价',
+    group: '跨海通道工程',
     category: '专项工程 · 防火',
     summary:
       '参与跨海通道防火专项造价编制与审核，核对工程范围、清单项目及相关计价依据。',
@@ -152,6 +156,7 @@ export const projects: ProjectItem[] = [
   },
   {
     title: '高速公路改扩建工程造价',
+    group: '公路工程',
     category: '公路工程 · 改扩建',
     summary:
       '参与高速公路改扩建工程造价编制与修编，涉及算量识图、清单项目划分、计价分析及造价文件调整。',
@@ -159,6 +164,7 @@ export const projects: ProjectItem[] = [
   },
   {
     title: '市政道路工程造价',
+    group: '市政工程',
     category: '市政道路 · 计量计价',
     summary:
       '参与市政道路人行道工程造价工作，依据设计图纸开展工程数量核查、清单计价及造价文件调整。',
@@ -166,6 +172,7 @@ export const projects: ProjectItem[] = [
   },
   {
     title: '高速公路征地费用审核',
+    group: '公路工程',
     category: '征地审计 · 费用核查',
     summary:
       '参与高速公路征地费用审核，核对补偿资料、费用数据及相关政策依据，协助形成审核意见。',
@@ -178,8 +185,7 @@ export const projects: ProjectItem[] = [
 // 导航项与页面区块一一对应；隐藏区块时记得同步删掉这里的条目。
 export const navLinks = [
   { id: 'about', label: '关于' },
-  { id: 'projects', label: '项目' },
-  { id: 'focus', label: '业务' },
+  { id: 'projects', label: '工程项目' },
   { id: 'experience', label: '经历' },
-  { id: 'method', label: '专业判断' },
+  { id: 'research', label: '技术实践' },
 ];
