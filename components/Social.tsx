@@ -19,90 +19,73 @@ const iconPaths = {
   },
 } as const;
 
-const tileClass = 'flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700/75 bg-slate-800/35 text-slate-300 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-teal-300/55 group-hover:bg-teal-300/10 group-hover:text-teal-200 group-focus-visible:border-teal-300 group-focus-visible:text-teal-200 motion-reduce:transform-none motion-reduce:transition-none';
-const itemClass = 'group flex min-h-[77px] w-full flex-col items-center justify-start gap-2 rounded-xl text-center focus-visible:outline-none';
-const labelClass = 'text-xs leading-5 text-slate-400 transition-colors group-hover:text-teal-200';
+
+const iconClass = 'inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700/75 bg-slate-800/35 text-slate-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-300/55 hover:bg-teal-300/10 hover:text-teal-200 focus-visible:border-teal-300 focus-visible:text-teal-200 motion-reduce:transform-none motion-reduce:transition-none';
 
 function ContactIcon({ icon }: { icon: SocialLink['icon'] }) {
   if (icon === 'qq') {
-    return <span aria-hidden="true" className="font-mono text-[13px] font-extrabold tracking-[-0.08em]">QQ</span>;
+    return (
+      <svg viewBox="0 0 24 24" className="h-[23px] w-[23px]" aria-hidden="true">
+        <ellipse cx="12" cy="11.3" rx="5" ry="7.8" fill="currentColor" />
+        <ellipse cx="12" cy="12.5" rx="3" ry="4.6" fill="#0f172a" />
+        <circle cx="10.4" cy="8.2" r=".6" fill="#0f172a" />
+        <circle cx="13.6" cy="8.2" r=".6" fill="#0f172a" />
+        <path d="M10.8 9.5h2.4L12 10.7z" fill="#fbbf24" />
+        <path d="M7.5 14.7 4.4 18M16.5 14.7l3.1 3.3" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" fill="none" />
+        <path d="M8.7 18.1 7 21h4l1-2M15.3 18.1 17 21h-4l-1-2" fill="currentColor" />
+        <path d="M7.6 13.9c2.7 1.7 6.1 2 8.8.5" stroke="#fbbf24" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+      </svg>
+    );
   }
   const data = iconPaths[icon];
   return (
-    <svg
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox={data.viewBox}
-      className="h-[21px] w-[21px]"
-      fill={icon === 'github' ? 'currentColor' : 'none'}
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox={data.viewBox}
+      className="h-[23px] w-[23px]" fill={icon === 'github' ? 'currentColor' : 'none'}
       stroke={icon === 'github' ? 'none' : 'currentColor'}
       strokeWidth={icon === 'github' ? undefined : 1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinecap="round" strokeLinejoin="round">
       <path d={data.path} />
     </svg>
   );
 }
 
 export default function Social() {
-  const [qqNotice, setQqNotice] = useState('');
-  const qq = profile.social.find(item => item.icon === 'qq');
-  const qqNumber = qq?.icon === 'qq' ? qq.copyText : '';
-
+  const [message, setMessage] = useState('');
   async function copyQQ(value: string) {
     try {
       await navigator.clipboard.writeText(value);
-      setQqNotice('QQ 号码已复制');
+      setMessage('QQ 号码已复制');
     } catch {
-      setQqNotice('无法自动复制，请手动选择下方号码');
+      setMessage('复制失败，可从 QQ 图标的提示文字获取号码');
     }
   }
 
   return (
-    <div className="mt-9 max-w-[320px]" aria-label="联系与博客入口">
-      <ul className="grid grid-cols-4 gap-2">
+    <nav className="mt-8" aria-label="联系与博客">
+      <ul className="flex flex-wrap items-center gap-3">
         {profile.social.map(item => (
-          <li key={item.label} className="min-w-0">
+          <li key={item.label}>
             {item.icon === 'qq' ? (
-              <button
-                type="button"
-                onClick={() => void copyQQ(item.copyText)}
-                title={`复制 QQ 号码：${item.copyText}`}
+              <button type="button" className={iconClass}
+                title={`QQ：${item.copyText}（点击复制）`}
                 aria-label={`复制 QQ 号码 ${item.copyText}`}
-                className={itemClass}
-              >
-                <span className={tileClass}><ContactIcon icon="qq" /></span>
-                <span className={labelClass}>QQ</span>
+                onClick={() => void copyQQ(item.copyText)}>
+                <ContactIcon icon="qq" />
               </button>
             ) : item.icon === 'blog' ? (
-              <Link href={item.href} title="阅读博客" className={itemClass}>
-                <span className={tileClass}><ContactIcon icon="blog" /></span>
-                <span className={labelClass}>博客</span>
+              <Link className={iconClass} href={item.href} title="博客" aria-label="博客">
+                <ContactIcon icon="blog" />
               </Link>
             ) : (
-              <a
-                href={item.href}
-                title={item.label}
-                className={itemClass}
-                {...(item.icon === 'github' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              >
-                <span className={tileClass}><ContactIcon icon={item.icon} /></span>
-                <span className={labelClass}>{item.label}</span>
+              <a className={iconClass} href={item.href} title={item.label} aria-label={item.label}
+                {...(item.icon === 'github' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                <ContactIcon icon={item.icon} />
               </a>
             )}
           </li>
         ))}
       </ul>
-      {qqNumber && (
-        <p className="mt-2 text-center text-xs leading-6 text-slate-400">
-          QQ：<span className="select-all font-mono tabular-nums text-slate-300">{qqNumber}</span>
-          <span className="ml-2 text-slate-500">点击图标复制</span>
-        </p>
-      )}
-      <p role="status" aria-live="polite" className="min-h-5 text-center text-xs text-teal-300">
-        {qqNotice}
-      </p>
-    </div>
+      <span role="status" aria-live="polite" className="sr-only">{message}</span>
+    </nav>
   );
 }

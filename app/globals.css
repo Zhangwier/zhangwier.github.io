@@ -122,3 +122,35 @@ html {
 
 /* Anchor targets for the article table of contents. */
 .post-body h2[id] { scroll-margin-top: 5rem; }
+
+/* Editorial reading typography: narrower line length, clearer hierarchy, responsive diagrams. */
+.post-editorial {
+  font-size: 16px;
+  line-height: 1.95;
+  overflow-wrap: break-word;
+}
+
+.post-editorial h2 {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.post-editorial h3 {
+  font-size: 1.09rem;
+  line-height: 1.65;
+}
+
+.post-editorial img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(15, 23, 42, 0.3);
+}
+
+@media (min-width: 640px) {
+  .post-editorial {
+    font-size: 16.5px;
+    line-height: 2;
+  }
+}
