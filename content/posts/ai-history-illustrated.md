@@ -1,6 +1,6 @@
 ---
 title: 人工智能简史：从图灵到大语言模型（图解入门）
-date: 2026-10-10
+date: 2026-08-01
 tags: [人工智能, 科普入门, 机器学习, 深度学习, Transformer]
 category: 人工智能
 cover: /images/ai-history-concepts.svg
