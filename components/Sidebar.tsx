@@ -15,8 +15,6 @@ export default function Sidebar() {
           {profile.title}
         </h2>
 
-        <p className="mt-4 max-w-sm text-[15px] leading-7">{profile.tagline}</p>
-
         <nav className="mt-7 lg:hidden" aria-label="个人介绍章节">
           <ul className="flex flex-wrap gap-x-5 gap-y-3">
             {navLinks.map(({ id, label }) => (
