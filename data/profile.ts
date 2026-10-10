@@ -3,11 +3,9 @@
  * 数组留空则对应区块与导航项自动隐藏。
  */
 
-export type SocialLink = {
-  label: string;
-  href: string;
-  icon: 'github' | 'linkedin' | 'x' | 'mail';
-};
+export type SocialLink =
+  | { label: string; href: string; icon: 'github' | 'mail' | 'blog' }
+  | { label: string; icon: 'qq'; copyText: string };
 
 export type FocusItem = {
   title: string;
@@ -104,6 +102,8 @@ export const profile = {
   social: [
     { label: 'GitHub', href: 'https://github.com/Zhangwier', icon: 'github' },
     { label: '邮箱', href: 'mailto:zhangwex@outlook.com', icon: 'mail' },
+    { label: '博客', href: '/blog/', icon: 'blog' },
+    { label: 'QQ', icon: 'qq', copyText: '257454554' },
   ] satisfies SocialLink[],
 
   // 有简历 PDF 就放到 public/resume.pdf，然后改成 '/resume.pdf'；留空则不显示入口。

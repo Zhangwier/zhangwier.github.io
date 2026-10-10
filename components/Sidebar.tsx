@@ -7,13 +7,6 @@ export default function Sidebar() {
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        <nav aria-label="网站区域导航" className="mb-8 flex items-center gap-5 text-xs font-semibold tracking-wide">
-          <span aria-current="page" className="border-b-2 border-teal-300 pb-2 text-slate-100">个人主页</span>
-          <Link href="/blog/" className="border-b-2 border-transparent pb-2 text-slate-400 transition-colors hover:border-teal-300/60 hover:text-teal-200">
-            博客 <span aria-hidden="true">↗</span>
-          </Link>
-        </nav>
-
         <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
           <Link href="/">{profile.name}</Link>
         </h1>
