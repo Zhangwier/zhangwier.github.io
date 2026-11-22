@@ -38,6 +38,13 @@ try {
     await page.screenshot({ path: 'artifacts/' + scenario.name + '-fluid-home.png' });
 
     if (scenario.mobile) {
+      // Previous implementation appeared colorful immediately but its ink
+      // dissolved after a few seconds. Verify the sustained ambient scene.
+      await page.waitForTimeout(6500);
+      await page.screenshot({ path: 'artifacts/mobile-fluid-ambient-8s.png' });
+    }
+
+    if (scenario.mobile) {
       const hero = page.locator('.fluid-hero');
       assert.equal(await hero.evaluate(el => getComputedStyle(el).touchAction), 'pan-y');
       await page.getByRole('button', { name: '开启手指涂色' }).click();
