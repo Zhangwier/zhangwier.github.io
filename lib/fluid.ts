@@ -399,7 +399,9 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
   const resize = () => {
     if (disposed) return;
     const rect = hero.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    // Keep animation affordable on physical phones even when their browser
+    // requests a desktop-sized CSS viewport.
+    const dpr = Math.min(window.devicePixelRatio || 1, isCoarsePointer ? 1 : 1.5);
     const width = Math.max(1, Math.round(rect.width * dpr));
     const height = Math.max(1, Math.round(rect.height * dpr));
     if (canvas.width === width && canvas.height === height && velocity) return;
@@ -407,7 +409,7 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
     canvas.height = height;
     disposeTargets();
 
-    const small = window.matchMedia('(max-width: 767px)').matches;
+    const small = isCoarsePointer || window.matchMedia('(max-width: 767px)').matches;
     const sim = resolution(small ? 80 : 120, width, height);
     const pigment = resolution(small ? 256 : 480, width, height);
     simW = sim.width;
