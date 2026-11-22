@@ -14,6 +14,8 @@ try {
   for (const scenario of [
     { name: 'desktop', width: 1440, height: 900, mobile: false },
     { name: 'mobile', width: 390, height: 844, mobile: true },
+    // A phone set to "desktop site" may report a 980px CSS viewport.
+    { name: 'desktop-mode-phone', width: 980, height: 760, mobile: true },
   ]) {
     const page = await browser.newPage({
       viewport: { width: scenario.width, height: scenario.height },
@@ -41,7 +43,7 @@ try {
       // Previous implementation appeared colorful immediately but its ink
       // dissolved after a few seconds. Verify the sustained ambient scene.
       await page.waitForTimeout(6500);
-      await page.screenshot({ path: 'artifacts/mobile-fluid-ambient-8s.png' });
+      await page.screenshot({ path: 'artifacts/' + scenario.name + '-fluid-ambient-8s.png' });
     }
 
     if (scenario.mobile) {
