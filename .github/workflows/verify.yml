@@ -1,0 +1,46 @@
+name: Verify site changes
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feature/fluid-canvas-home]
+
+permissions:
+  contents: read
+
+jobs:
+  static-build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Type-check
+        run: npx tsc --noEmit
+      - name: Build static site
+        run: npm run build
+      - name: Check generated homepage and blog
+        run: |
+          test -f out/index.html
+          test -f out/blog/index.html
+          test -f out/blog/ai-masks-ordinariness-human-distance/index.html
+      - name: Install browser smoke-test tools
+        run: |
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install chromium
+      - name: Smoke-test desktop and mobile layouts
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory out >/tmp/homepage-server.log 2>&1 &
+          node scripts/check-fluid.mjs
+      - name: Save visual screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fluid-homepage-preview
+          path: artifacts/*.png
+          if-no-files-found: ignore

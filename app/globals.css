@@ -154,3 +154,69 @@ html {
     line-height: 2;
   }
 }
+
+/* Interactive landing artwork: the fallback remains readable without WebGL. */
+.fluid-hero {
+  background: #060c19;
+  isolation: isolate;
+}
+
+.fluid-hero-fallback,
+.fluid-hero-canvas,
+.fluid-hero-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.fluid-hero-fallback {
+  background:
+    radial-gradient(ellipse 36% 48% at 74% 43%, rgba(51, 79, 178, 0.48), transparent 78%),
+    radial-gradient(ellipse 35% 42% at 82% 65%, rgba(116, 48, 150, 0.3), transparent 79%),
+    radial-gradient(ellipse 27% 30% at 62% 60%, rgba(17, 131, 129, 0.22), transparent 80%),
+    #060c19;
+}
+
+.fluid-hero-canvas {
+  display: block;
+  mix-blend-mode: screen;
+  transition: opacity 500ms ease;
+}
+
+.fluid-hero-shade {
+  background:
+    linear-gradient(90deg, rgba(5, 10, 22, 0.93) 0%, rgba(5, 10, 22, 0.78) 27%, rgba(5, 10, 22, 0.26) 65%, rgba(5, 10, 22, 0.18) 100%),
+    linear-gradient(0deg, rgba(5, 10, 22, 0.66) 0%, transparent 22%, transparent 75%, rgba(5, 10, 22, 0.4) 100%);
+}
+
+.fluid-hero-title {
+  font-size: clamp(2.5rem, 7.3vw, 6.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  text-shadow: 0 3px 36px rgba(2, 6, 23, 0.35);
+}
+
+.fluid-hero-eyebrow {
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 639px) {
+  .fluid-hero-shade {
+    background:
+      linear-gradient(90deg, rgba(5, 10, 22, 0.82), rgba(5, 10, 22, 0.33)),
+      linear-gradient(0deg, rgba(5, 10, 22, 0.75), transparent 42%, rgba(5, 10, 22, 0.35));
+  }
+
+  .fluid-hero-title {
+    letter-spacing: -0.045em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fluid-hero-canvas { display: none; }
+  .fluid-hero-canvas,
+  .fluid-hero a,
+  .fluid-hero button { transition: none; }
+}
