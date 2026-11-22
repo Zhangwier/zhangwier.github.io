@@ -7,6 +7,13 @@ export default function FluidHero() {
   const heroRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [touchMode, setTouchMode] = useState(false);
+  const [touchAvailable, setTouchAvailable] = useState(false);
+
+  useEffect(() => {
+    // CSS widths can be desktop-sized on a physical phone if the browser
+    // requests a desktop site. Prefer touch hardware capability.
+    setTouchAvailable(navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches);
+  }, []);
   const touchModeRef = useRef(false);
   touchModeRef.current = touchMode;
   const [motionEnabled, setMotionEnabled] = useState(true);
@@ -55,12 +62,12 @@ export default function FluidHero() {
         style={{ opacity: motionEnabled && supported ? 1 : 0 }}
       />
       <div className="fluid-hero-shade" aria-hidden="true" />
-      {supported && motionEnabled && (
+      {supported && motionEnabled && touchAvailable && (
         <button
           type="button"
           aria-pressed={touchMode}
           onClick={() => setTouchMode(value => !value)}
-          className="absolute right-5 top-20 z-20 rounded-full border border-teal-200/40 bg-slate-950/75 px-4 py-2.5 text-xs font-semibold text-teal-100 shadow-lg shadow-slate-950/30 backdrop-blur-md focus-visible:text-white sm:hidden"
+          className="absolute right-5 top-20 z-20 rounded-full border border-teal-200/40 bg-slate-950/75 px-4 py-2.5 text-xs font-semibold text-teal-100 shadow-lg shadow-slate-950/30 backdrop-blur-md focus-visible:text-white"
         >
           {touchMode ? '结束互动 · 恢复滚动' : '开启手指涂色'}
         </button>
@@ -105,8 +112,9 @@ export default function FluidHero() {
 
         <footer className="flex flex-wrap items-end justify-between gap-5 border-t border-white/15 pt-5 text-xs tracking-wide text-slate-300">
           <span className="fluid-hero-interact">
-            <span className="hidden sm:inline">移动指针，扰动色彩</span>
-            <span className="sm:hidden">{touchMode ? '在屏幕上连续拖动手指，彩墨将跟随旋转' : '轻触出现彩墨，点击右上角开启拖动互动'}</span>
+            <span>{touchAvailable
+              ? (touchMode ? '连续拖动手指搅动彩墨；结束互动可恢复滚动' : '轻触会产生彩墨；点击右上角开启拖动互动')
+              : '移动指针，扰动色彩'}</span>
           </span>
           {supported ? (
             <button
