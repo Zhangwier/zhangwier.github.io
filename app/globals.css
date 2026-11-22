@@ -173,22 +173,25 @@ html {
 
 .fluid-hero-fallback {
   background:
-    radial-gradient(ellipse 36% 48% at 74% 43%, rgba(51, 79, 178, 0.48), transparent 78%),
-    radial-gradient(ellipse 35% 42% at 82% 65%, rgba(116, 48, 150, 0.3), transparent 79%),
-    radial-gradient(ellipse 27% 30% at 62% 60%, rgba(17, 131, 129, 0.22), transparent 80%),
+    radial-gradient(ellipse 64% 55% at 83% 17%, rgba(91, 45, 228, 0.94), transparent 77%),
+    radial-gradient(ellipse 71% 56% at 19% 72%, rgba(8, 178, 207, 0.88), transparent 78%),
+    radial-gradient(ellipse 52% 50% at 68% 67%, rgba(230, 54, 144, 0.78), transparent 75%),
+    radial-gradient(ellipse 34% 43% at 14% 28%, rgba(14, 175, 130, 0.62), transparent 79%),
     #060c19;
 }
 
 .fluid-hero-canvas {
   display: block;
-  mix-blend-mode: screen;
+  /* The shader now paints a full-frame scene; additive blending washed
+     saturated ink into pale white when mixed with the CSS fallback. */
+  mix-blend-mode: normal;
   transition: opacity 500ms ease;
 }
 
 .fluid-hero-shade {
   background:
-    linear-gradient(90deg, rgba(5, 10, 22, 0.93) 0%, rgba(5, 10, 22, 0.78) 27%, rgba(5, 10, 22, 0.26) 65%, rgba(5, 10, 22, 0.18) 100%),
-    linear-gradient(0deg, rgba(5, 10, 22, 0.66) 0%, transparent 22%, transparent 75%, rgba(5, 10, 22, 0.4) 100%);
+    linear-gradient(90deg, rgba(4, 7, 22, 0.72) 0%, rgba(4, 7, 22, 0.43) 34%, rgba(4, 7, 22, 0.04) 79%, transparent 100%),
+    linear-gradient(0deg, rgba(4, 7, 22, 0.46), transparent 17%, transparent 83%, rgba(4, 7, 22, 0.35));
 }
 
 .fluid-hero-title {
@@ -205,8 +208,9 @@ html {
 @media (max-width: 639px) {
   .fluid-hero-shade {
     background:
-      linear-gradient(90deg, rgba(5, 10, 22, 0.82), rgba(5, 10, 22, 0.33)),
-      linear-gradient(0deg, rgba(5, 10, 22, 0.75), transparent 42%, rgba(5, 10, 22, 0.35));
+      radial-gradient(ellipse 86% 35% at 23% 50%, rgba(3, 7, 20, 0.65), transparent 97%),
+      linear-gradient(90deg, rgba(4, 7, 22, 0.35), rgba(4, 7, 22, 0.03)),
+      linear-gradient(0deg, rgba(4, 7, 22, 0.4), transparent 18%, transparent 87%, rgba(4, 7, 22, 0.25));
   }
 
   .fluid-hero-title {
