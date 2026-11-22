@@ -164,6 +164,8 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
   });
   if (!gl || !gl.getExtension('EXT_color_buffer_float')) return null;
 
+  const floatLinear = !!gl.getExtension('OES_texture_float_linear');
+  const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
   const textures = new Set<WebGLTexture>();
   const framebuffers = new Set<WebGLFramebuffer>();
   const programs: WebGLProgram[] = [];
@@ -285,8 +287,8 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
     textures.add(texture);
     framebuffers.add(framebuffer);
     gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, floatLinear ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, floatLinear ? gl.LINEAR : gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, width, height, 0, gl.RGBA, gl.HALF_FLOAT, null);
@@ -419,7 +421,6 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
     draw();
 
     p = shaderPrograms.pressure;
-    two(p, 'uTexel', texX, texY); // set again after each useProgram below
     for (let i = 0; i < 12; i++) {
       use(p, pressure.write);
       bindTex(p, 'uPressure', pressure.read, 0);
@@ -454,6 +455,10 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
   const frame = (now: number) => {
     animationFrame = 0;
     if (disposed || !isVisible || document.hidden) return;
+    if (isCoarsePointer && lastFrame && now - lastFrame < 32) {
+      animationFrame = requestAnimationFrame(frame);
+      return;
+    }
     const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.033) : 0.016;
     lastFrame = now;
 
@@ -551,6 +556,9 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
     observer.disconnect();
     sizeObserver.disconnect();
     disposeTargets();
+    programs.forEach(p => gl.deleteProgram(p));
+    gl.deleteBuffer(triangle);
+    gl.deleteVertexArray(vao);
     return null;
   }
 
