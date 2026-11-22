@@ -182,7 +182,9 @@ html {
 
 .fluid-hero-canvas {
   display: block;
-  mix-blend-mode: screen;
+  /* The shader now paints a full-frame scene; additive blending washed
+     saturated ink into pale white when mixed with the CSS fallback. */
+  mix-blend-mode: normal;
   transition: opacity 500ms ease;
 }
 
