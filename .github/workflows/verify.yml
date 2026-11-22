@@ -1,0 +1,31 @@
+name: Verify site changes
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feature/fluid-canvas-home]
+
+permissions:
+  contents: read
+
+jobs:
+  static-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Type-check
+        run: npx tsc --noEmit
+      - name: Build static site
+        run: npm run build
+      - name: Check generated homepage and blog
+        run: |
+          test -f out/index.html
+          test -f out/blog/index.html
+          test -f out/blog/ai-masks-ordinariness-human-distance/index.html
