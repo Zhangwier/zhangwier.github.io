@@ -130,18 +130,49 @@ const SHADERS = {
     }`,
   display: `
     uniform sampler2D uDye;
+    uniform sampler2D uVelocity;
     uniform vec2 uTexel;
+    uniform float uTime;
+
+    // A slowly undulating, full-canvas color field beneath the simulated
+    // pigment. Velocity distorts this field too, so pointer forces also
+    // displace its ribbons; no single fixed ink-drop emitter.
     void main() {
+      vec2 force = texture(uVelocity, vUv).xy;
+      vec2 uv = vUv - force * 0.035;
+      float t = uTime * 0.14;
+      vec2 p = uv;
+      p.x += 0.14 * sin(5.5 * uv.y + 1.8 * sin(3.0 * uv.x - t) + t);
+      p.y += 0.12 * cos(6.2 * uv.x - 1.5 * cos(3.4 * uv.y + t) - t * 0.78);
+      float a = sin(6.4 * p.x + 3.0 * sin(4.8 * p.y + t));
+      float b = cos(5.2 * p.y - 3.4 * p.x - 1.5 * sin(2.0 * p.y - t));
+      float c = sin(4.7 * p.x - 5.3 * p.y + t * 0.72);
+
+      vec3 navy = vec3(0.03, 0.08, 0.28);
+      vec3 cyan = vec3(0.04, 0.84, 0.96);
+      vec3 violet = vec3(0.39, 0.20, 0.96);
+      vec3 pink = vec3(0.97, 0.20, 0.64);
+      vec3 green = vec3(0.04, 0.79, 0.57);
+      vec3 gold = vec3(1.0, 0.52, 0.21);
+      vec3 base = mix(cyan, violet, smoothstep(-0.85, 0.80, a));
+      base = mix(base, pink, smoothstep(0.1, 0.95, b) * 0.77);
+      base = mix(base, green, smoothstep(0.35, 0.98, -b) * 0.62);
+      base = mix(base, gold, smoothstep(0.72, 1.0, c) * 0.57);
+      float depth = 0.42 + 0.46 * smoothstep(-1.0, 1.0, sin(2.6 * p.x + 2.1 * p.y + a + t));
+      base = mix(navy, base, depth);
+
       vec3 dye = texture(uDye, vUv).rgb;
+      float ink = max(max(dye.r, dye.g), dye.b);
+      vec3 pigment = 1.0 - exp(-dye * 1.65);
+      float mixAmount = smoothstep(0.06, 1.3, ink) * 0.84;
+      vec3 color = mix(base, pigment, mixAmount);
       float shadeX = length(texture(uDye, vUv + vec2(uTexel.x, 0.0)).rgb)
                    - length(texture(uDye, vUv - vec2(uTexel.x, 0.0)).rgb);
       float shadeY = length(texture(uDye, vUv + vec2(0.0, uTexel.y)).rgb)
                    - length(texture(uDye, vUv - vec2(0.0, uTexel.y)).rgb);
-      vec3 normal = normalize(vec3(shadeX, shadeY, 0.9));
-      float lighting = 0.77 + 0.28 * dot(normal, normalize(vec3(0.3, 0.45, 1.0)));
-      vec3 color = (1.0 - exp(-dye * 1.5)) * lighting;
-      float alpha = clamp(max(max(color.r, color.g), color.b) * 0.90, 0.0, 0.92);
-      outputColor = vec4(color, alpha);
+      float light = 0.88 + 0.15 * dot(normalize(vec3(shadeX, shadeY, 0.9)),
+                                      normalize(vec3(0.3, 0.45, 1.0)));
+      outputColor = vec4(clamp(color * light, 0.0, 1.0), 1.0);
     }`,
 } as const;
 
@@ -345,16 +376,23 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
   };
 
   const initialInk = () => {
-    for (let i = 0; i < 12; i++) {
-      const angle = i * 2.39996323;
-      splat({
-        x: 0.67 + 0.16 * Math.cos(angle),
-        y: 0.52 + 0.20 * Math.sin(angle),
-        vx: 0.48 * Math.sin(angle),
-        vy: -0.42 * Math.cos(angle),
-        color: PALETTE[i % PALETTE.length],
-        radius: 0.005,
-      });
+    // Five wide ribbons distributed over the full hero. Do not start from a
+    // nearly empty canvas or a single central emitter.
+    for (let band = 0; band < 5; band++) {
+      const direction = band % 2 ? -1 : 1;
+      for (let i = 0; i < 12; i++) {
+        const u = i / 11;
+        const phase = u * Math.PI * 2 + band * 1.45;
+        const color = PALETTE[band];
+        splat({
+          x: 0.07 + 0.86 * u,
+          y: 0.12 + band * 0.19 + 0.07 * Math.sin(phase),
+          vx: direction * (0.50 + 0.22 * Math.cos(phase)),
+          vy: direction * 0.55 * Math.cos(phase),
+          color: [color[0] * 0.72, color[1] * 0.72, color[2] * 0.72],
+          radius: 0.013,
+        });
+      }
     }
   };
 
@@ -400,7 +438,7 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
     const texX = 1 / simW;
     const texY = 1 / simH;
 
-    advect(velocity, velocity.read, dt, 0.991);
+    advect(velocity, velocity.read, dt, 0.996);
 
     let p = shaderPrograms.curl;
     use(p, curl);
@@ -441,7 +479,7 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
     draw();
     velocity.swap();
 
-    advect(dye, velocity.read, dt, 0.986);
+    advect(dye, velocity.read, dt, 0.997);
   };
 
   const render = () => {
@@ -451,7 +489,9 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     bindTex(p, 'uDye', dye.read, 0);
+    if (velocity) bindTex(p, 'uVelocity', velocity.read, 1);
     two(p, 'uTexel', 1 / dyeW, 1 / dyeH);
+    one(p, 'uTime', performance.now() / 1000);
     draw();
   };
 
@@ -465,18 +505,28 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
     const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.033) : 0.016;
     lastFrame = now;
 
-    if (now - lastAmbient > 155) {
+    if (now - lastAmbient > 125) {
       lastAmbient = now;
       const t = now / 1000;
-      const idx = (paletteIndex++) % PALETTE.length;
-      pending.push({
-        x: 0.67 + 0.19 * Math.sin(t * 0.32),
-        y: 0.52 + 0.23 * Math.cos(t * 0.26),
-        vx: 0.22 * Math.cos(t * 0.32),
-        vy: -0.19 * Math.sin(t * 0.26),
-        color: PALETTE[idx],
-        radius: 0.0025,
-      });
+      // Multiple independent orbital sources rather than repeatedly
+      // dropping a single blob onto the same path.
+      for (let i = 0; i < 3; i++) {
+        const phase = i * Math.PI * 2 / 3;
+        const direction = i === 1 ? -1 : 1;
+        const a = t * (0.32 + i * 0.055) * direction + phase;
+        const b = t * (0.23 + i * 0.035) + phase * 1.7;
+        const x = 0.5 + 0.39 * Math.sin(a + 0.28 * Math.sin(b));
+        const y = 0.5 + 0.40 * Math.cos(b - 0.36 * Math.sin(a));
+        const color = PALETTE[(i + Math.floor(t / 5)) % PALETTE.length];
+        pending.push({
+          x,
+          y,
+          vx: direction * (0.55 + 0.55 * Math.cos(b)),
+          vy: (i % 2 ? 1 : -1) * (0.55 + 0.5 * Math.sin(a)),
+          color: [color[0] * 1.2, color[1] * 1.2, color[2] * 1.2],
+          radius: 0.0065,
+        });
+      }
     }
 
     try {
