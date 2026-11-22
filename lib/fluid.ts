@@ -152,7 +152,7 @@ function resolution(base: number, w: number, h: number) {
     : { width: base, height: Math.round(base / ratio) };
 }
 
-export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() => void) | null {
+export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEnabled: () => boolean): (() => void) | null {
   const gl = canvas.getContext('webgl2', {
     alpha: true,
     depth: false,
@@ -186,6 +186,9 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
   let paletteIndex = 0;
   const pending: Splat[] = [];
   let previousPointer: { x: number; y: number } | null = null;
+  let previousTouch: { x: number; y: number } | null = null;
+  let activeTouchId: number | null = null;
+  hero.dataset.fluidInteractions = '0';
 
   const vertexShader = gl.createShader(gl.VERTEX_SHADER);
   if (!vertexShader) return null;
@@ -499,37 +502,72 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
     }
   };
 
-  const onPointerMove = (event: PointerEvent) => {
-    if (event.pointerType === 'touch') return; // never hijack normal mobile scrolling
-    const rect = hero.getBoundingClientRect();
-    const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-    const y = Math.max(0, Math.min(1, 1 - (event.clientY - rect.top) / rect.height));
-    if (previousPointer) {
-      const dx = (event.clientX - previousPointer.x) / rect.width;
-      const dy = -(event.clientY - previousPointer.y) / rect.height;
-      if (Math.abs(dx) + Math.abs(dy) > 0.0003) {
-        pending.push({
-          x, y,
-          vx: Math.max(-2, Math.min(2, dx * 25)),
-          vy: Math.max(-2, Math.min(2, dy * 25)),
-          color: PALETTE[paletteIndex++ % PALETTE.length],
-          radius: 0.0028,
-        });
-      }
-    }
-    previousPointer = { x: event.clientX, y: event.clientY };
+  // A passive touch tap produces ink without interrupting normal document scrolling.
+  // Dragging is opt-in: touch-action: none is set by FluidHero only while touch mode is enabled.
+  const markInteraction = () => {
+    hero.dataset.fluidInteractions = String(Number(hero.dataset.fluidInteractions || 0) + 1);
   };
-  const onPointerLeave = () => { previousPointer = null; };
+
+  const brush = (clientX: number, clientY: number, previous: { x: number; y: number } | null, isTouch: boolean) => {
+    if (!previous) return;
+    const rect = hero.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return;
+    const dx = (clientX - previous.x) / rect.width;
+    const dy = -(clientY - previous.y) / rect.height;
+    if (Math.abs(dx) + Math.abs(dy) <= 0.0003) return;
+    const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    const y = Math.max(0, Math.min(1, 1 - (clientY - rect.top) / rect.height));
+    const color = PALETTE[paletteIndex++ % PALETTE.length];
+    pending.push({
+      x, y,
+      vx: Math.max(-3, Math.min(3, dx * (isTouch ? 48 : 25))),
+      vy: Math.max(-3, Math.min(3, dy * (isTouch ? 48 : 25))),
+      color: isTouch ? [color[0] * 1.8, color[1] * 1.8, color[2] * 1.8] : color,
+      radius: isTouch ? 0.0065 : 0.0028,
+    });
+    markInteraction();
+  };
+
+  const onPointerMove = (event: PointerEvent) => {
+    const position = { x: event.clientX, y: event.clientY };
+    if (event.pointerType === 'touch') {
+      if (!touchEnabled() || activeTouchId !== event.pointerId) return;
+      brush(event.clientX, event.clientY, previousTouch, true);
+      previousTouch = position;
+      return;
+    }
+    brush(event.clientX, event.clientY, previousPointer, false);
+    previousPointer = position;
+  };
+  const onPointerLeave = (event: PointerEvent) => {
+    if (event.pointerType !== 'touch') previousPointer = null;
+  };
   const onPointerDown = (event: PointerEvent) => {
     if (event.pointerType !== 'touch') return;
+    if (event.target instanceof Element && event.target.closest('a, button')) return;
     const rect = hero.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return;
+    const color = PALETTE[paletteIndex++ % PALETTE.length];
     pending.push({
-      x: (event.clientX - rect.left) / rect.width,
-      y: 1 - (event.clientY - rect.top) / rect.height,
-      vx: 0.12, vy: 0.08,
-      color: PALETTE[paletteIndex++ % PALETTE.length],
-      radius: 0.004,
+      x: Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)),
+      y: Math.max(0, Math.min(1, 1 - (event.clientY - rect.top) / rect.height)),
+      vx: 0.24, vy: 0.16,
+      color: [color[0] * 1.8, color[1] * 1.8, color[2] * 1.8],
+      radius: 0.007,
     });
+    markInteraction();
+    if (touchEnabled()) {
+      activeTouchId = event.pointerId;
+      previousTouch = { x: event.clientX, y: event.clientY };
+      hero.setPointerCapture(event.pointerId);
+    }
+  };
+  const onPointerEnd = (event: PointerEvent) => {
+    if (event.pointerType === 'touch' && activeTouchId === event.pointerId) {
+      activeTouchId = null;
+      previousTouch = null;
+      if (hero.hasPointerCapture(event.pointerId)) hero.releasePointerCapture(event.pointerId);
+    }
   };
   const onVisibilityChange = () => document.hidden ? stop() : start();
   const onContextLost = (e: Event) => { e.preventDefault(); stop(); };
@@ -550,6 +588,8 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
     hero.addEventListener('pointermove', onPointerMove, { passive: true });
     hero.addEventListener('pointerleave', onPointerLeave);
     hero.addEventListener('pointerdown', onPointerDown, { passive: true });
+    hero.addEventListener('pointerup', onPointerEnd, { passive: true });
+    hero.addEventListener('pointercancel', onPointerEnd, { passive: true });
     document.addEventListener('visibilitychange', onVisibilityChange);
     canvas.addEventListener('webglcontextlost', onContextLost);
   } catch {
@@ -570,6 +610,8 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement): (() =>
     hero.removeEventListener('pointermove', onPointerMove);
     hero.removeEventListener('pointerleave', onPointerLeave);
     hero.removeEventListener('pointerdown', onPointerDown);
+    hero.removeEventListener('pointerup', onPointerEnd);
+    hero.removeEventListener('pointercancel', onPointerEnd);
     document.removeEventListener('visibilitychange', onVisibilityChange);
     canvas.removeEventListener('webglcontextlost', onContextLost);
     disposeTargets();
