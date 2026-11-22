@@ -190,8 +190,8 @@ html {
 
 .fluid-hero-shade {
   background:
-    linear-gradient(90deg, rgba(4, 7, 22, 0.72) 0%, rgba(4, 7, 22, 0.43) 34%, rgba(4, 7, 22, 0.04) 79%, transparent 100%),
-    linear-gradient(0deg, rgba(4, 7, 22, 0.46), transparent 17%, transparent 83%, rgba(4, 7, 22, 0.35));
+    radial-gradient(ellipse 65% 48% at 18% 52%, rgba(3, 7, 20, 0.57), transparent 94%),
+    linear-gradient(0deg, rgba(4, 7, 22, 0.54), transparent 15%, transparent 85%, rgba(4, 7, 22, 0.24));
 }
 
 .fluid-hero-title {
@@ -208,9 +208,8 @@ html {
 @media (max-width: 639px) {
   .fluid-hero-shade {
     background:
-      radial-gradient(ellipse 86% 35% at 23% 50%, rgba(3, 7, 20, 0.65), transparent 97%),
-      linear-gradient(90deg, rgba(4, 7, 22, 0.35), rgba(4, 7, 22, 0.03)),
-      linear-gradient(0deg, rgba(4, 7, 22, 0.4), transparent 18%, transparent 87%, rgba(4, 7, 22, 0.25));
+      radial-gradient(ellipse 80% 29% at 23% 53%, rgba(3, 7, 20, 0.68), transparent 96%),
+      linear-gradient(0deg, rgba(4, 7, 22, 0.46), transparent 15%, transparent 86%, rgba(4, 7, 22, 0.25));
   }
 
   .fluid-hero-title {
