@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from 'react';
 export default function FluidHero() {
   const heroRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [touchMode, setTouchMode] = useState(false);
+  const touchModeRef = useRef(false);
+  touchModeRef.current = touchMode;
   const [motionEnabled, setMotionEnabled] = useState(true);
   const [supported, setSupported] = useState(true);
 
@@ -24,7 +27,7 @@ export default function FluidHero() {
     let dispose: (() => void) | null = null;
     import('@/lib/fluid').then(({ mountFluid }) => {
       if (cancelled) return;
-      dispose = mountFluid(canvas, hero);
+      dispose = mountFluid(canvas, hero, () => touchModeRef.current);
       if (!dispose) setSupported(false);
     }).catch(() => {
       if (!cancelled) setSupported(false);
@@ -37,7 +40,13 @@ export default function FluidHero() {
   }, [motionEnabled]);
 
   return (
-    <section ref={heroRef} id="top" className="fluid-hero relative isolate overflow-hidden" aria-label="ZhangWex 个人主页首屏">
+    <section
+      ref={heroRef}
+      id="top"
+      className={`fluid-hero relative isolate overflow-hidden ${touchMode ? 'fluid-touch-active select-none' : ''}`}
+      style={{ touchAction: touchMode ? 'none' : 'pan-y' }}
+      aria-label="ZhangWex 个人主页首屏"
+    >
       <div className="fluid-hero-fallback" aria-hidden="true" />
       <canvas
         ref={canvasRef}
@@ -46,6 +55,16 @@ export default function FluidHero() {
         style={{ opacity: motionEnabled && supported ? 1 : 0 }}
       />
       <div className="fluid-hero-shade" aria-hidden="true" />
+      {supported && motionEnabled && (
+        <button
+          type="button"
+          aria-pressed={touchMode}
+          onClick={() => setTouchMode(value => !value)}
+          className="absolute right-5 top-20 z-20 rounded-full border border-teal-200/40 bg-slate-950/75 px-4 py-2.5 text-xs font-semibold text-teal-100 shadow-lg shadow-slate-950/30 backdrop-blur-md focus-visible:text-white sm:hidden"
+        >
+          {touchMode ? '结束互动 · 恢复滚动' : '开启手指涂色'}
+        </button>
+      )}
 
       <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-screen-xl flex-col px-6 pb-8 pt-7 sm:min-h-[90svh] sm:px-12 sm:pt-10 lg:min-h-screen">
         <header className="flex flex-wrap items-center justify-between gap-5">
@@ -87,12 +106,12 @@ export default function FluidHero() {
         <footer className="flex flex-wrap items-end justify-between gap-5 border-t border-white/15 pt-5 text-xs tracking-wide text-slate-300">
           <span className="fluid-hero-interact">
             <span className="hidden sm:inline">移动指针，扰动色彩</span>
-            <span className="sm:hidden">轻触色彩，探索流动</span>
+            <span className="sm:hidden">{touchMode ? '在屏幕上连续拖动手指，彩墨将跟随旋转' : '轻触出现彩墨，点击右上角开启拖动互动'}</span>
           </span>
           {supported ? (
             <button
               type="button"
-              onClick={() => setMotionEnabled(value => !value)}
+              onClick={() => { setTouchMode(false); setMotionEnabled(value => !value); }}
               aria-pressed={motionEnabled}
               className="rounded-md px-2 py-2 text-slate-200 transition hover:bg-white/10 hover:text-white focus-visible:text-white"
             >
