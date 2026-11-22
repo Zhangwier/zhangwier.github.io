@@ -88,7 +88,7 @@ const SHADERS = {
       float c = texture(uCurl, vUv).x;
       vec2 force = 0.5 * vec2(abs(t) - abs(b), abs(r) - abs(l));
       force /= length(force) + 0.0001;
-      force *= 24.0 * c * uDelta;
+      force *= 39.0 * c * uDelta;
       force.y = -force.y;
       vec2 velocity = texture(uVelocity, vUv).xy + force;
       outputColor = vec4(clamp(velocity, vec2(-4.0), vec2(4.0)), 0.0, 1.0);
@@ -163,8 +163,8 @@ const SHADERS = {
 
       vec3 dye = texture(uDye, vUv).rgb;
       float ink = max(max(dye.r, dye.g), dye.b);
-      vec3 pigment = 1.0 - exp(-dye * 1.65);
-      float mixAmount = smoothstep(0.06, 1.3, ink) * 0.84;
+      vec3 pigment = 1.0 - exp(-dye * 1.06);
+      float mixAmount = smoothstep(0.09, 1.4, ink) * 0.72;
       vec3 color = mix(base, pigment, mixAmount);
       float shadeX = length(texture(uDye, vUv + vec2(uTexel.x, 0.0)).rgb)
                    - length(texture(uDye, vUv - vec2(uTexel.x, 0.0)).rgb);
@@ -172,7 +172,7 @@ const SHADERS = {
                    - length(texture(uDye, vUv - vec2(0.0, uTexel.y)).rgb);
       float light = 0.88 + 0.15 * dot(normalize(vec3(shadeX, shadeY, 0.9)),
                                       normalize(vec3(0.3, 0.45, 1.0)));
-      outputColor = vec4(clamp(color * light, 0.0, 1.0), 1.0);
+      outputColor = vec4(clamp(color * light * 0.89, 0.0, 1.0), 1.0);
     }`,
 } as const;
 
@@ -481,7 +481,7 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
     draw();
     velocity.swap();
 
-    advect(dye, velocity.read, dt, 0.997);
+    advect(dye, velocity.read, dt, 0.9955);
   };
 
   const render = () => {
@@ -525,7 +525,7 @@ export function mountFluid(canvas: HTMLCanvasElement, hero: HTMLElement, touchEn
           y,
           vx: direction * (0.55 + 0.55 * Math.cos(b)),
           vy: (i % 2 ? 1 : -1) * (0.55 + 0.5 * Math.sin(a)),
-          color: [color[0] * 1.2, color[1] * 1.2, color[2] * 1.2],
+          color: [color[0] * 1.16, color[1] * 1.16, color[2] * 1.16],
           radius: 0.0065,
         });
       }
