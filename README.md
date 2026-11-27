@@ -8,6 +8,15 @@
 
 技术栈：Next.js App Router、Tailwind CSS、TypeScript；使用 GitHub Actions 静态构建与 GitHub Pages 部署。
 
+## 语言约定
+
+界面文案全英文，文章正文保持中文原文。
+
+- 已英文化：首页资料与区块、导航、页脚、联系图标提示、博客页头页脚、筛选与搜索、分类标签、日期格式、`aria-label` 与 SEO 元信息。根 `<html lang="en">`。
+- 保持中文：`content/posts/*.md` 的标题、摘要、正文、标签与 `category` 字段值。博客首页已写明 "Articles are written in Chinese"。
+- 分类存的是中文键（`人工智能` / `工程造价` / `技术实践` / `观点与思考`），显示走 `lib/categories.ts` 的 `CATEGORY_LABELS` 映射；该文件不引 Node 模块，客户端组件可共用。搜索同时匹配中文键与英文标签。
+- 新增文章照旧用中文写 frontmatter，界面会自动显示英文标签；新增分类要同时补 `lib/categories.ts` 的键与标签。
+
 ## 发布文章
 
 在 `content/posts/` 新建 Markdown 文件，文件名即 URL 中的 slug。
@@ -24,7 +33,7 @@ featured: false
 ---
 ```
 
-`category` 可用值：`人工智能`、`工程造价`、`技术实践`、`观点与思考`。建议每篇显式指定；旧文章若没有该字段会按标签推测归类。
+`category` 可用值：`人工智能`、`工程造价`、`技术实践`、`观点与思考`（界面分别显示为 AI / Cost engineering / Technical practice / Essays）。建议每篇显式指定；旧文章若没有该字段会按标签推测归类。
 
 `cover` 为可选项，使用 `public/images/` 中的本地 SVG/PNG/WebP 图片，并写成 `/images/xxx.svg` 路径。文章配图也应放在 `public/images/`。
 
@@ -40,6 +49,7 @@ featured: false
 - `components/blog/BlogExplorer.tsx`：精选文章、筛选与搜索。
 - `app/blog/[slug]/page.tsx`：正文阅读版式与目录。
 - `lib/posts.ts`：构建期读取 Markdown、解析元数据与标题锚点。
+- `lib/categories.ts`：分类中文键与英文显示标签的映射，客户端与构建期共用。
 - `app/globals.css`：全站样式与 Markdown 正文排版。
 
 修改网站文字或添加文章，不需要另开仓库或域名。
