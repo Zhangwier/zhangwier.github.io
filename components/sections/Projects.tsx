@@ -1,12 +1,12 @@
 import { projects } from '@/data/profile';
 import SectionHeading, { sectionClass } from '@/components/SectionKit';
 
-const groups = ['公路工程', '跨海通道工程', '市政工程'] as const;
+const groups = ['Highway', 'Sea Crossing', 'Municipal'] as const;
 
 export default function Projects() {
   return (
-    <section id="projects" className={sectionClass} aria-label="参与的工程项目">
-      <SectionHeading>工程项目</SectionHeading>
+    <section id="projects" className={sectionClass} aria-label="Engineering projects">
+      <SectionHeading>Projects</SectionHeading>
 
       <div className="space-y-10">
         {groups.map(group => {

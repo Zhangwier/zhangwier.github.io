@@ -15,7 +15,7 @@ export default function Sidebar() {
           {profile.title}
         </h2>
 
-        <nav className="mt-7 lg:hidden" aria-label="个人介绍章节">
+        <nav className="mt-7 lg:hidden" aria-label="Profile sections">
           <ul className="flex flex-wrap gap-x-5 gap-y-3">
             {navLinks.map(({ id, label }) => (
               <li key={id}>

@@ -3,8 +3,8 @@ import SectionHeading, { sectionClass } from '@/components/SectionKit';
 
 export default function Experience() {
   return (
-    <section id="experience" className={sectionClass} aria-label="工作与教育经历">
-      <SectionHeading>工作与教育经历</SectionHeading>
+    <section id="experience" className={sectionClass} aria-label="Work and education">
+      <SectionHeading>Experience</SectionHeading>
       <ol className="divide-y divide-slate-800/80 border-y border-slate-700/70">
         {experience.map(item => (
           <li key={`${item.company}-${item.title}`} className="grid gap-2 py-6 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:gap-5 sm:py-7">

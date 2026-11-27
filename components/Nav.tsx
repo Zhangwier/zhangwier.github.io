@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { navLinks } from '@/data/profile';
 
 /**
- * 左栏的页内跳转导航。滚动时自动高亮当前区块，
- * 高亮项左侧的横线会从 2rem 展开到 4rem。
+ * In-page navigation for the left column. The current section is highlighted on
+ * scroll, and the rule beside the active item grows from 2rem to 4rem.
  */
 export default function Nav() {
   const [activeId, setActiveId] = useState<string>(navLinks[0]?.id ?? '');
@@ -34,7 +34,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className="nav mt-16 hidden lg:block" aria-label="页内跳转">
+    <nav className="nav mt-16 hidden lg:block" aria-label="On this page">
       <ul className="w-max">
         {navLinks.map(({ id, label }) => {
           const isActive = activeId === id;

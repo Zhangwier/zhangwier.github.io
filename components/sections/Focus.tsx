@@ -5,8 +5,8 @@ export default function Focus() {
   if (profile.focus.length === 0) return null;
 
   return (
-    <section id="focus" className={sectionClass} aria-label="主要业务内容">
-      <SectionHeading>业务内容</SectionHeading>
+    <section id="focus" className={sectionClass} aria-label="Practice areas">
+      <SectionHeading>Focus</SectionHeading>
       <ol className="border-y border-slate-700/70">
         {profile.focus.map((item, index) => (
           <li key={item.title} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 border-b border-slate-800/80 py-6 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:gap-5">

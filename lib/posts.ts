@@ -2,15 +2,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import { POST_CATEGORIES, type PostCategory } from './categories';
 
 /**
- * 文章读取层。只跑在构建期（Node 环境），产物是纯静态 HTML，
- * 所以 output: 'export' 完全兼容——没有任何运行时的文件系统访问。
+ * Post reading layer. Build time only (Node), producing plain static HTML, so
+ * `output: 'export'` is fully supported — nothing reads the file system at runtime.
  */
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts');
 
-export type PostCategory = '人工智能' | '工程造价' | '技术实践' | '观点与思考';
+export type { PostCategory } from './categories';
 
 export type PostMeta = {
   slug: string;
@@ -23,7 +24,7 @@ export type PostMeta = {
   featured: boolean;
 };
 
-const VALID_CATEGORIES: PostCategory[] = ['人工智能', '工程造价', '技术实践', '观点与思考'];
+const VALID_CATEGORIES: PostCategory[] = POST_CATEGORIES;
 
 /** Explicit frontmatter category is preferred; older posts retain a safe fallback. */
 function normalizeCategory(value: unknown, tags: string[]): PostCategory {
@@ -125,9 +126,12 @@ export function getPost(slug: string): Post | null {
   return parseFile(fileName);
 }
 
-/** 2026-09-21 → 2026 年 9 月 21 日 */
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** 2026-09-21 → 21 Sep 2026 */
 export function formatDate(iso: string): string {
   const [year, month, day] = iso.split('-');
-  if (!year || !month || !day) return iso;
-  return `${year} 年 ${Number(month)} 月 ${Number(day)} 日`;
+  const name = MONTHS[Number(month) - 1];
+  if (!year || !name || !day) return iso;
+  return `${Number(day)} ${name} ${year}`;
 }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { profile } from '@/data/profile';
 import { formatDate, getAllPostMetas, getPost } from '@/lib/posts';
+import { categoryLabel } from '@/lib/categories';
 
 type Params = { slug: string };
 
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       description: post.summary || post.title,
       url: `/blog/${post.slug}/`,
       siteName: profile.name,
-      locale: 'zh_CN',
+      locale: 'en_US',
       images: [{ url: '/og-cover.png', width: 1200, height: 630 }],
     },
   };
@@ -49,11 +50,11 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
       <div className="max-w-[740px]">
         <Link href="/blog/#articles"
           className="text-sm font-medium text-slate-400 transition-colors hover:text-teal-300 focus-visible:text-teal-300">
-          ← 所有文章
+          ← All articles
         </Link>
 
         <header className="mt-9 border-b border-slate-800 pb-8 sm:mt-12 sm:pb-10">
-          <p className="text-xs font-medium tracking-wide text-teal-300">{post.category}</p>
+          <p className="text-xs font-medium tracking-wide text-teal-300">{categoryLabel(post.category)}</p>
           <h1 className="mt-4 text-3xl font-semibold leading-snug tracking-tight text-slate-100 sm:text-[38px]">
             {post.title}
           </h1>
@@ -74,9 +75,9 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
           {post.toc.length > 2 && (
             <details className="mb-10 rounded-lg border border-slate-700/70 bg-slate-900/50 p-4 xl:hidden">
               <summary className="cursor-pointer select-none text-sm font-medium text-slate-200">
-                本文目录 · 点击展开
+                Contents · tap to expand
               </summary>
-              <nav aria-label="本文目录" className="mt-4 border-t border-slate-800 pt-3">
+              <nav aria-label="Article contents" className="mt-4 border-t border-slate-800 pt-3">
                 <ol className="space-y-3">
                   {post.toc.map(({ id, title }, index) => (
                     <li key={id}>
@@ -95,17 +96,17 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
           <article className="post-body post-editorial" dangerouslySetInnerHTML={{ __html: post.html }} />
 
           <footer className="mt-20 border-t border-slate-800 pt-8">
-            <p className="mb-5 text-xs font-semibold tracking-[0.16em] text-teal-300">继续阅读</p>
+            <p className="mb-5 text-xs font-semibold tracking-[0.16em] text-teal-300">Keep reading</p>
             <div className="grid gap-3 sm:grid-cols-2">
               <Link href="/blog/#articles"
                 className="group flex min-h-24 flex-col justify-center rounded-lg border border-slate-800 p-5 transition-colors hover:border-slate-600 hover:bg-slate-900/60">
-                <span className="text-xs text-slate-400">文章归档</span>
-                <span className="mt-2 font-medium text-slate-100 group-hover:text-teal-200">返回所有文章 →</span>
+                <span className="text-xs text-slate-400">Archive</span>
+                <span className="mt-2 font-medium text-slate-100 group-hover:text-teal-200">All articles →</span>
               </Link>
               {nextPost && (
                 <Link href={`/blog/${nextPost.slug}/`}
                   className="group flex min-h-24 flex-col justify-center rounded-lg border border-slate-800 p-5 transition-colors hover:border-slate-600 hover:bg-slate-900/60">
-                  <span className="text-xs text-slate-400">下一篇文章</span>
+                  <span className="text-xs text-slate-400">Next article</span>
                   <span className="mt-2 line-clamp-2 font-medium leading-relaxed text-slate-100 group-hover:text-teal-200">{nextPost.title}</span>
                 </Link>
               )}
@@ -115,8 +116,8 @@ export default async function PostPage({ params }: { params: Promise<Params> }) 
 
         {post.toc.length > 2 && (
           <aside className="hidden min-w-0 xl:block">
-            <nav aria-label="文章章节导航" className="sticky top-28 max-h-[calc(100vh-9rem)] overflow-y-auto border-l border-slate-800 py-2 pl-5">
-              <p className="mb-5 text-xs font-medium tracking-[0.12em] text-slate-300">本文目录</p>
+            <nav aria-label="Article sections" className="sticky top-28 max-h-[calc(100vh-9rem)] overflow-y-auto border-l border-slate-800 py-2 pl-5">
+              <p className="mb-5 text-xs font-medium tracking-[0.12em] text-slate-300">Contents</p>
               <ol className="space-y-4">
                 {post.toc.map(({ id, title }, index) => (
                   <li key={id}>

@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/',
     siteName: profile.name,
-    locale: 'zh_CN',
+    locale: 'en_US',
     images: [{
       url: '/og-cover.png',
       width: 1200,
       height: 630,
-      alt: 'ZhangWex 个人主页：工程造价咨询',
+      alt: 'ZhangWex — cost engineering consultant',
     }],
   },
   twitter: {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <body className="bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900">
         {children}
       </body>

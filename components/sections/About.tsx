@@ -12,8 +12,8 @@ function renderEmphasis(text: string) {
 
 export default function About() {
   return (
-    <section id="about" className={sectionClass} aria-label="个人介绍">
-      <SectionHeading>个人介绍</SectionHeading>
+    <section id="about" className={sectionClass} aria-label="About">
+      <SectionHeading>About</SectionHeading>
       <div className="max-w-3xl space-y-5 text-[15px] leading-8 text-slate-300 sm:text-base">
         {profile.about.map((paragraph, index) => (
           <p key={index}>{renderEmphasis(paragraph)}</p>

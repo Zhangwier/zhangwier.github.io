@@ -12,7 +12,7 @@ export default function BlogLayout({ children }: { children: ReactNode }) {
         href="#blog-content"
         className="sr-only rounded bg-teal-300 px-4 py-3 font-medium text-slate-950 focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50"
       >
-        跳到正文
+        Skip to the article
       </a>
       <BlogHeader />
       <main id="blog-content" className="relative">

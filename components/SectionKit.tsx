@@ -1,8 +1,9 @@
 import { profile } from '@/data/profile';
 
 /**
- * 移动端滚到某个区块时，顶部会浮出一条带毛玻璃的区块标题。
- * 大屏隐藏（lg:sr-only），因为左栏导航已经标示了位置。
+ * On mobile a section heading floats to the top of the viewport with a frosted
+ * backdrop while its section is in view. Hidden on large screens (lg:sr-only),
+ * where the left-column navigation already shows position.
  */
 export default function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -17,7 +18,7 @@ export default function SectionHeading({ children }: { children: React.ReactNode
 export function TagList({ tags }: { tags: string[] }) {
   if (tags.length === 0) return null;
   return (
-    <ul className="mt-2 flex flex-wrap" aria-label="使用到的技术">
+    <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
       {tags.map(tag => (
         <li key={tag} className="mr-1.5 mt-2">
           <span className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">
@@ -30,8 +31,9 @@ export function TagList({ tags }: { tags: string[] }) {
 }
 
 /**
- * 列表条目的共享外壳：鼠标悬停时同组其它条目变暗，当前条浮出半透明卡片。
- * 这是靠父级 group/list 与子级 group-hover/list 的命名分组配合完成的。
+ * Shared shell for list entries: on hover the sibling entries dim and the one
+ * under the pointer lifts onto a translucent card. This relies on the named
+ * `group/list` parent and `group-hover/list` children working together.
  */
 export function HoverCard({ children }: { children: React.ReactNode }) {
   return (
@@ -48,7 +50,7 @@ export function HoverCard({ children }: { children: React.ReactNode }) {
 export const sectionClass = 'mb-16 scroll-mt-16 md:mb-20 lg:mb-28 lg:scroll-mt-24';
 
 export function ResumeLink() {
-  // 没配简历文件就不显示入口，免得点出 404。
+  // Hide the link when no CV file is configured, so it cannot lead to a 404.
   if (!profile.resumeHref) return null;
 
   return (
@@ -58,7 +60,7 @@ export function ResumeLink() {
       target="_blank"
       rel="noreferrer noopener"
     >
-      查看完整简历
+      View full CV
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
@@ -76,7 +78,7 @@ export function ResumeLink() {
   );
 }
 
-/** 外链箭头，悬停时向右上位移。 */
+/** External-link arrow that shifts up and to the right on hover. */
 export function ExternalIcon() {
   return (
     <svg

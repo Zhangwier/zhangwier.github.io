@@ -5,8 +5,8 @@ export default function Method() {
   if (profile.method.length === 0) return null;
 
   return (
-    <section id="method" className={sectionClass} aria-label="专业判断">
-      <SectionHeading>专业判断</SectionHeading>
+    <section id="method" className={sectionClass} aria-label="Professional judgement">
+      <SectionHeading>Method</SectionHeading>
       <div className="divide-y divide-slate-800/80 border-y border-slate-700/70">
         {profile.method.map(item => (
           <div key={item.step} className="grid grid-cols-[5.5rem_minmax(0,1fr)] gap-4 py-6 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-6">

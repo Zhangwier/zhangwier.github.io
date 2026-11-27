@@ -7,7 +7,7 @@ export default function Footer() {
       <p className="mt-2">
         <a href="https://github.com/Zhangwier" target="_blank" rel="noreferrer noopener" className="text-slate-300 transition-colors hover:text-teal-300">GitHub</a>
         <span className="mx-3 text-slate-600">/</span>
-        <a href={`mailto:${profile.email}`} className="text-slate-300 transition-colors hover:text-teal-300">联系邮箱</a>
+        <a href={`mailto:${profile.email}`} className="text-slate-300 transition-colors hover:text-teal-300">Email</a>
       </p>
     </footer>
   );

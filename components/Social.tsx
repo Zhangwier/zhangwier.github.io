@@ -54,26 +54,26 @@ export default function Social() {
   async function copyQQ(value: string) {
     try {
       await navigator.clipboard.writeText(value);
-      setMessage('QQ 号码已复制');
+      setMessage('QQ number copied');
     } catch {
-      setMessage('复制失败，可从 QQ 图标的提示文字获取号码');
+      setMessage('Copy failed — the QQ icon tooltip shows the number');
     }
   }
 
   return (
-    <nav className="mt-8" aria-label="联系与博客">
+    <nav className="mt-8" aria-label="Contact and writing">
       <ul className="flex flex-wrap items-center gap-3">
         {profile.social.map(item => (
           <li key={item.label}>
             {item.icon === 'qq' ? (
               <button type="button" className={iconClass}
-                title={`QQ：${item.copyText}（点击复制）`}
-                aria-label={`复制 QQ 号码 ${item.copyText}`}
+                title={`QQ: ${item.copyText} (click to copy)`}
+                aria-label={`Copy QQ number ${item.copyText}`}
                 onClick={() => void copyQQ(item.copyText)}>
                 <ContactIcon icon="qq" />
               </button>
             ) : item.icon === 'blog' ? (
-              <Link className={iconClass} href={item.href} title="博客" aria-label="博客">
+              <Link className={iconClass} href={item.href} title="Writing" aria-label="Writing">
                 <ContactIcon icon="blog" />
               </Link>
             ) : (

@@ -15,7 +15,7 @@ export default function Page() {
           href="#content"
           className="absolute left-0 top-0 block -translate-x-full rounded bg-yellow-500 px-4 py-3 text-sm font-bold uppercase tracking-widest text-slate-900 focus-visible:translate-x-0"
         >
-          跳到内容
+          Skip to content
         </a>
 
         <div className="lg:flex lg:justify-between lg:gap-6">

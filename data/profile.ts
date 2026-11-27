@@ -1,6 +1,6 @@
 /**
- * 站点全部文案与链接都在这个文件里改，不需要碰组件。
- * 数组留空则对应区块与导航项自动隐藏。
+ * Every piece of site copy and every link lives in this file; components stay untouched.
+ * An empty array hides the matching section and its nav entry.
  */
 
 export type SocialLink =
@@ -37,7 +37,7 @@ export type ProjectItem = {
   imageAlt?: string;
   badge?: string;
   category?: string;
-  group?: '公路工程' | '跨海通道工程' | '市政工程';
+  group?: 'Highway' | 'Sea Crossing' | 'Municipal';
   featured?: boolean;
   role?: string;
   approach?: string;
@@ -45,144 +45,161 @@ export type ProjectItem = {
 
 export const profile = {
   name: 'ZhangWex',
-  title: '工程造价咨询',
-  tagline: '交通工程专业背景，现从事工程造价咨询；记录工作经历与个人技术实践。',
+  title: 'Cost Engineering Consultant',
+  tagline:
+    'A transportation engineering background, now practising cost consulting — notes on the work and on independent technical practice.',
   email: 'zhangwex@outlook.com',
 
-  // 正文支持 **加粗** 语法，会渲染成更亮的强调色。
+  // **Bold** markup renders as a brighter emphasis colour.
   about: [
-    '具有交通工程专业背景，曾在保利长大第四分公司从事公路、桥梁工程施工技术管理，现于江苏交咨（谷德数智）从事**工程造价咨询**。先后参与高速公路、跨海通道及市政道路等项目的概预算修编、专项工程造价和费用审核工作。',
+    'Trained in transportation engineering, I worked in highway and bridge construction technical management at Poly Changda’s Fourth Branch, and now practise **cost engineering consulting** at Jiangsu Jiaozhi (Gude Shuzhi). I have taken part in estimate and budget revisions, specialist cost engineering, and cost reviews for expressway, sea-crossing and municipal road projects.',
   ],
-  // 业务内容按实际参与的造价工作环节划分；数字化研究不作为同级业务。
+  // Business lines follow the cost-engineering stages I actually work in; digital
+  // research is not presented as a peer business line.
   focus: [
-    { title: '工程计量与数量核对', description: '施工图识读、工程范围核对、工程数量计算及复核。' },
-    { title: '清单与概预算编制', description: '工程量清单编制、概预算编制与修编、定额及价格依据核对。' },
-    { title: '造价核查与成果审核', description: '工程量与计价成果核查、专项费用核对、审核差异及意见整理。' },
+    {
+      title: 'Quantity take-off and verification',
+      description:
+        'Reading construction drawings, confirming scope, computing and re-checking quantities.',
+    },
+    {
+      title: 'Bills of quantities and estimates',
+      description:
+        'Preparing bills of quantities, compiling and revising estimates and budgets, checking quota and price references.',
+    },
+    {
+      title: 'Cost review and deliverable audit',
+      description:
+        'Reviewing quantities and pricing outputs, checking specialist charges, and documenting review variances and findings.',
+    },
   ] satisfies FocusItem[],
 
-  // 专业判断：计量口径、计价适用性与审核依据。
+  // Professional judgement: measurement basis, pricing applicability, review evidence.
   method: [
     {
       step: '01',
-      title: '计量口径',
-      description: '工程量取值应与适用图纸、计量规则及合同约定相一致；汇总数量不能代替来源核对。',
+      title: 'Measurement basis',
+      description:
+        'Quantities must agree with the applicable drawings, measurement rules and contract terms; an aggregate figure cannot replace checking its sources.',
     },
     {
       step: '02',
-      title: '计价适用性',
-      description: '清单项目与定额子目用途不同，需核对工程内容、施工条件、计量单位及价格资料时点。',
+      title: 'Pricing applicability',
+      description:
+        'Bill items and quota sub-items serve different purposes; work content, site conditions, units of measurement and the price date all need checking.',
     },
     {
       step: '03',
-      title: '审核依据',
-      description: '数量、计价及费用差异的核查意见，应能够回溯至文件版本、具体依据与计算底稿。',
+      title: 'Review evidence',
+      description:
+        'Any finding on a quantity, price or charge difference should trace back to a document version, a specific reference and the calculation worksheet.',
     },
   ] satisfies MethodItem[],
 
-  skills: ['算量识图', '工程造价', '造价数字化'],
+  skills: ['Drawing take-off', 'Cost engineering', 'Digital cost workflows'],
   social: [
     { label: 'GitHub', href: 'https://github.com/Zhangwier', icon: 'github' },
-    { label: '邮箱', href: 'mailto:zhangwex@outlook.com', icon: 'mail' },
-    { label: '博客', href: '/blog/', icon: 'blog' },
+    { label: 'Email', href: 'mailto:zhangwex@outlook.com', icon: 'mail' },
+    { label: 'Writing', href: '/blog/', icon: 'blog' },
     { label: 'QQ', icon: 'qq', copyText: '257454554' },
   ] satisfies SocialLink[],
 
-  // 有简历 PDF 就放到 public/resume.pdf，然后改成 '/resume.pdf'；留空则不显示入口。
+  // Drop a CV at public/resume.pdf and set this to '/resume.pdf'; leave empty to hide the link.
   resumeHref: '',
 };
 
 export const experience: ExperienceItem[] = [
   {
-    range: '2026 — 至今',
-    title: '造价员',
-    company: '江苏交咨（谷德数智）',
+    range: '2026 — Present',
+    title: 'Cost Engineer',
+    company: 'Jiangsu Jiaozhi (Gude Shuzhi)',
     summary:
-      '从事工程造价咨询工作，参与概预算修编、工程造价编制及审核等业务。',
-    tags: ['工程计量', '计量计价', '造价成果'],
+      'Cost engineering consulting: estimate and budget revisions, cost compilation and review.',
+    tags: ['Measurement', 'Pricing', 'Cost deliverables'],
   },
   {
     range: '2023 — 2025',
-    title: '工程技术员',
-    company: '保利长大第四分公司',
+    title: 'Engineering Technician',
+    company: 'Poly Changda, Fourth Branch',
     summary:
-      '参与公路、桥梁工程施工技术管理，涉及项目策划、场站临建、技术科研及桥面板预制相关工作。',
-    tags: ['技术管理', '场站临建', '桥面板预制'],
+      'Technical management on highway and bridge construction, covering project planning, site plant and temporary works, technical research and precast deck panels.',
+    tags: ['Technical management', 'Site works', 'Precast panels'],
   },
   {
     range: '2019 — 2023',
-    title: '交通工程专业',
-    company: '哈尔滨工业大学',
+    title: 'Transportation Engineering',
+    company: 'Harbin Institute of Technology',
     summary:
-      '学习交通工程及道路、桥梁相关专业课程，学习工程识图、道路与桥梁及相关工程技术课程。',
-    tags: ['交通工程', '道路与桥梁'],
+      'Coursework in transportation engineering, roads and bridges, engineering drawing interpretation and related engineering subjects.',
+    tags: ['Transportation', 'Roads and bridges'],
   },
 ];
 
 export const projects: ProjectItem[] = [
   {
-    title: '高速公路概预算修编',
-    group: '公路工程',
+    title: 'Expressway estimate and budget revision',
+    group: 'Highway',
     summary:
-      '高速公路工程概预算修编，涉及设计工程数量、定额依据及材料价格等计价要素。',
-    tags: ['概预算', '工程量', '定额计价', '造价审核'],
-    category: '公路工程 · 概预算',
+      'Estimate and budget revision for an expressway, covering designed quantities, quota references and material prices.',
+    tags: ['Estimate', 'Quantities', 'Quota pricing', 'Cost review'],
+    category: 'Highway · Estimate',
     featured: true,
-    role: '工程数量核查、定额套用与材料价格分析，并参与造价成果审核。',
-    approach: '依据设计文件、计价规定及价格资料核对工程内容与计价条件。',
+    role: 'Verified quantities, applied quota items and analysed material prices; took part in the cost review.',
+    approach: 'Checked work content and pricing conditions against design documents, pricing rules and price references.',
     image: '/images/project-highway-study.svg',
-    imageAlt: '抽象道路曲线与路线研究线稿，非真实工程图纸',
+    imageAlt: 'Abstract study of road curves and route lines, not an actual engineering drawing',
   },
   {
-    title: '跨海通道钢结构造价修编',
-    group: '跨海通道工程',
+    title: 'Sea-crossing steel structure cost revision',
+    group: 'Sea Crossing',
     summary:
-      '跨海通道钢结构造价修编，重点关注结构构造与清单计量、计价规则的对应关系。',
-    tags: ['钢结构', '工程计量', '清单计价', '造价分析'],
-    category: '钢结构 · 造价修编',
+      'Cost revision for the steel structures of a sea crossing, focused on how structural detailing maps to bill measurement and pricing rules.',
+    tags: ['Steel structures', 'Measurement', 'Bill pricing', 'Cost analysis'],
+    category: 'Steel structures · Cost revision',
     featured: true,
-    role: '算量识图、清单计价及材料价格、定额依据核查。',
-    approach: '结合施工图、构造要求和适用定额分析工程内容及计价条件。',
+    role: 'Drawing take-off, bill pricing, and checks on material prices and quota references.',
+    approach: 'Analysed work content and pricing conditions against construction drawings, detailing requirements and applicable quotas.',
     image: '/images/project-steel-study.svg',
-    imageAlt: '抽象钢结构几何线稿，非真实工程图纸',
+    imageAlt: 'Abstract geometric study of a steel structure, not an actual engineering drawing',
   },
   {
-    title: '跨海通道防火专项工程造价',
-    group: '跨海通道工程',
-    category: '专项工程 · 防火',
+    title: 'Sea-crossing fire protection specialist cost',
+    group: 'Sea Crossing',
+    category: 'Specialist works · Fire protection',
     summary:
-      '参与跨海通道防火专项造价编制与审核，核对工程范围、清单项目及相关计价依据。',
-    tags: ['专项工程', '清单计价', '造价审核'],
+      'Compilation and review of specialist fire protection costs for a sea crossing, checking scope, bill items and the relevant pricing references.',
+    tags: ['Specialist works', 'Bill pricing', 'Cost review'],
   },
   {
-    title: '高速公路改扩建工程造价',
-    group: '公路工程',
-    category: '公路工程 · 改扩建',
+    title: 'Expressway widening and reconstruction cost',
+    group: 'Highway',
+    category: 'Highway · Widening',
     summary:
-      '参与高速公路改扩建工程造价编制与修编，涉及算量识图、清单项目划分、计价分析及造价文件调整。',
-    tags: ['改扩建', '工程计量', '清单编制', '造价修编'],
+      'Cost compilation and revision for an expressway widening scheme, involving drawing take-off, bill item breakdown, pricing analysis and cost document updates.',
+    tags: ['Widening', 'Measurement', 'Bill preparation', 'Cost revision'],
   },
   {
-    title: '市政道路工程造价',
-    group: '市政工程',
-    category: '市政道路 · 计量计价',
+    title: 'Municipal road cost',
+    group: 'Municipal',
+    category: 'Municipal road · Measurement and pricing',
     summary:
-      '参与市政道路人行道工程造价工作，依据设计图纸开展工程数量核查、清单计价及造价文件调整。',
-    tags: ['市政道路', '工程计量', '清单计价', '造价修编'],
+      'Cost work on municipal road footways, verifying quantities from design drawings and updating bill pricing and cost documents.',
+    tags: ['Municipal roads', 'Measurement', 'Bill pricing', 'Cost revision'],
   },
   {
-    title: '高速公路征地费用审核',
-    group: '公路工程',
-    category: '征地审计 · 费用核查',
+    title: 'Expressway land acquisition cost review',
+    group: 'Highway',
+    category: 'Land acquisition · Cost verification',
     summary:
-      '参与高速公路征地费用审核，核对补偿资料、费用数据及相关政策依据，协助形成审核意见。',
-    tags: ['征地审计', '费用核查', '资料审核', '审计支撑'],
+      'Review of expressway land acquisition costs, checking compensation records, cost data and the relevant policy references to support the review findings.',
+    tags: ['Land acquisition', 'Cost verification', 'Document review', 'Audit support'],
   },
 ];
 
-// 文章已经迁至独立的 /blog/ 阅读区域，首页不再展示文章列表。
+// Articles now live in the independent /blog/ reading space; the home page no longer lists them.
 
-// 导航项与页面区块一一对应；隐藏区块时记得同步删掉这里的条目。
+// Nav entries map one-to-one to page sections; remove an entry when hiding its section.
 export const navLinks = [
-  { id: 'about', label: '个人简介' },
-  { id: 'research', label: '技术实践' },
+  { id: 'about', label: 'About' },
+  { id: 'research', label: 'Practice' },
 ];
